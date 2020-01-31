@@ -4,4 +4,6 @@
     <string name="title_dashboard">Dashboard</string>
     <string name="title_notifications">Notifications</string>
     <string name="search">Search</string>
+    <string name="search_hint">Name</string>
+    <string name="search_result_format">%2d. Name: %s Id: %s</string>
 </resources>

@@ -5,7 +5,8 @@ import com.squareup.moshi.JsonClass
 
 @JsonClass(generateAdapter = true)
 data class SearchResponse(
-    val results: List<SearchResult> = listOf(),
+    val results: List<SearchResult>?,
+    @Json(name = "totalresults")
     val totalResults: Int
 )
 
@@ -25,8 +26,8 @@ data class SearchResult(
     val currentMMR: Int,
     @Json(name = "p_currentrank")
     val currentRank: Int,
-    @Json(name = "p_verified")
+    @Json(name = "verified")
     val verified: Int,
-    @Json(name = "p_kd")
+    @Json(name = "kd")
     val kd: Int
 )

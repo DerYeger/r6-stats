@@ -16,7 +16,7 @@ val moshi: Moshi = Moshi.Builder()
 interface SiegeApi {
 
     @GET("search.php?platform=uplay&search=DerYeger")
-    fun search(@Query("platform") platform: String = "uplay", @Query("search") name: String): Any
+    suspend fun search(@Query("platform") platform: String = "uplay", @Query("search") name: String): SearchResponse
 }
 
 object NetworkService {

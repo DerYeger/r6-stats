@@ -20,9 +20,11 @@ class SearchFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         searchViewModel = ViewModelProvider(this).get(SearchViewModel::class.java)
-        binding = SearchFragmentBinding.inflate(inflater)
-        binding.viewModel = searchViewModel
-        binding.lifecycleOwner = this
+        binding = SearchFragmentBinding.inflate(inflater).apply {
+            viewModel = searchViewModel
+            lifecycleOwner = this@SearchFragment
+            searchResultList.adapter = SearchResultAdapter()
+        }
         return binding.root
     }
 }
