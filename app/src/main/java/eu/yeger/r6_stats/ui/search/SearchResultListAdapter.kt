@@ -6,11 +6,13 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import eu.yeger.r6_stats.databinding.SearchResultViewBinding
-import eu.yeger.r6_stats.network.SearchResult
+import eu.yeger.r6_stats.domain.SearchResult
 
-class SearchResultAdapter : ListAdapter<SearchResult, SearchResultAdapter.ViewHolder>(DiffCallback) {
+class SearchResultAdapter :
+    ListAdapter<SearchResult, SearchResultAdapter.ViewHolder>(DiffCallback) {
 
-    class ViewHolder(private val binding: SearchResultViewBinding) : RecyclerView.ViewHolder(binding.root) {
+    class ViewHolder(private val binding: SearchResultViewBinding) :
+        RecyclerView.ViewHolder(binding.root) {
 
         fun bind(searchResult: SearchResult, index: Int) {
             binding.searchResult = searchResult
@@ -19,7 +21,7 @@ class SearchResultAdapter : ListAdapter<SearchResult, SearchResultAdapter.ViewHo
         }
     }
 
-    companion object DiffCallback: DiffUtil.ItemCallback<SearchResult>() {
+    companion object DiffCallback : DiffUtil.ItemCallback<SearchResult>() {
         override fun areItemsTheSame(oldItem: SearchResult, newItem: SearchResult) =
             oldItem.id === newItem.id
 

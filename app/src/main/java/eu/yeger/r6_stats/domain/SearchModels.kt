@@ -1,4 +1,4 @@
-package eu.yeger.r6_stats.network
+package eu.yeger.r6_stats.domain
 
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
