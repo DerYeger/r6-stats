@@ -19,7 +19,9 @@ class StatsFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        viewModel = ViewModelProvider(this).get(StatsViewModel::class.java)
+        val playerId = StatsFragmentArgs.fromBundle(arguments!!).playerId
+        val viewModelFactory = StatsViewModel.Factory(playerId)
+        viewModel = ViewModelProvider(this, viewModelFactory).get(StatsViewModel::class.java)
         binding = StatsFragmentBinding.inflate(inflater).apply {
             viewModel = viewModel
             lifecycleOwner = this@StatsFragment
