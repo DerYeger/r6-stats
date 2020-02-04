@@ -24,13 +24,12 @@ class SearchViewModel : ViewModel() {
     val searchInProgress: LiveData<Boolean> = _searchInProgress
 
     fun search() {
-        Timber.i("Searching: ${searchString.value}")
-//        searchString.value?.let {
+        searchString.value?.let {
             viewModelScope.launch {
                 _searchInProgress.value = true
-                searchRepository.search(searchString.value!!)
+                searchRepository.search(it)
                 _searchInProgress.value = false
             }
-//        }
+        }
     }
 }

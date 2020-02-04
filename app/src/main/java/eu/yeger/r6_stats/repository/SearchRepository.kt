@@ -14,11 +14,9 @@ class SearchRepository {
     val searchResults: LiveData<List<SearchResult>> = _searchResults
 
     suspend fun search(searchString: String) {
-        withContext(Dispatchers.IO) {
-            val searchResponse: SearchResponse = withContext(Dispatchers.IO) {
-                NetworkService.siegeApi.search(name = searchString)
-            }
-            _searchResults.value = searchResponse.results
+        val searchResponse: SearchResponse = withContext(Dispatchers.IO) {
+            NetworkService.siegeApi.search(name = searchString)
         }
+        _searchResults.value = searchResponse.results
     }
 }

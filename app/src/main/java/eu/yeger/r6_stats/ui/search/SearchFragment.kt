@@ -21,7 +21,7 @@ class SearchFragment : Fragment() {
     ): View {
         viewModel = ViewModelProvider(this).get(SearchViewModel::class.java)
         binding = SearchFragmentBinding.inflate(inflater).apply {
-            viewModel = viewModel
+            viewModel = this@SearchFragment.viewModel
             lifecycleOwner = this@SearchFragment
             searchResultList.adapter = SearchResultAdapter()
         }
