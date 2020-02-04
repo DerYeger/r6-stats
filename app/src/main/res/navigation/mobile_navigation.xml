@@ -11,7 +11,10 @@
         android:label="@string/title_search" >
         <action
             android:id="@+id/action_navigation_search_to_navigation_stats"
-            app:destination="@id/navigation_stats" />
+            app:destination="@+id/navigation_stats" >
+            <argument android:defaultValue="@null"
+                android:name="playerId" />
+        </action>
     </fragment>
     <fragment
         android:id="@+id/navigation_stats"

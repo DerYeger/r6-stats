@@ -11,11 +11,16 @@
         <variable
             name="index"
             type="int" />
+
+        <variable
+            name="onClickListener"
+            type="eu.yeger.r6_stats.ui.OnClickListener" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:onClick="@{() -> onClickListener.onClick(searchResult)}">
 
         <TextView
             android:id="@+id/search_result_text"

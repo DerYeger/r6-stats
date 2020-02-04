@@ -7,16 +7,18 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import eu.yeger.r6_stats.databinding.SearchResultViewBinding
 import eu.yeger.r6_stats.domain.SearchResult
+import eu.yeger.r6_stats.ui.OnClickListener
 
-class SearchResultAdapter :
+class SearchResultAdapter(private val onClickListener: OnClickListener<SearchResult>) :
     ListAdapter<SearchResult, SearchResultAdapter.ViewHolder>(DiffCallback) {
 
-    class ViewHolder(private val binding: SearchResultViewBinding) :
+    inner class ViewHolder(private val binding: SearchResultViewBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
         fun bind(searchResult: SearchResult, index: Int) {
             binding.searchResult = searchResult
             binding.index = index
+            binding.onClickListener = onClickListener
             binding.executePendingBindings()
         }
     }

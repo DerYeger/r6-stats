@@ -16,7 +16,7 @@ data class PlayerResponse(
     @Json(name = "operators")
     val operatorStats: String,
     @Json(name = "data")
-    val stats: Map<String, Any>,
+    val stats: List<Int>,
     @Json(name = "p_id")
     val id: String,
     @Json(name = "p_name")

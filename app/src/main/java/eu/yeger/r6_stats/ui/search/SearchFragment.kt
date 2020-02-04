@@ -6,7 +6,9 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import eu.yeger.r6_stats.databinding.SearchFragmentBinding
+import eu.yeger.r6_stats.ui.OnClickListener
 
 class SearchFragment : Fragment() {
 
@@ -23,7 +25,12 @@ class SearchFragment : Fragment() {
         binding = SearchFragmentBinding.inflate(inflater).apply {
             viewModel = this@SearchFragment.viewModel
             lifecycleOwner = this@SearchFragment
-            searchResultList.adapter = SearchResultAdapter()
+            searchResultList.adapter = SearchResultAdapter(OnClickListener { searchResult ->
+                val action =
+                    SearchFragmentDirections.actionNavigationSearchToNavigationStats()
+                action.playerId = searchResult.id
+                findNavController().navigate(action)
+            })
         }
         return binding.root
     }
