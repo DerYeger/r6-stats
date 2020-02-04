@@ -13,9 +13,8 @@ class StatsViewModel(playerId: String?) : ViewModel() {
     val player = statsRepository.player
 
     init {
-        when (playerId) {
-            null -> TODO()
-            else -> viewModelScope.launch {
+        playerId?.let {
+            viewModelScope.launch {
                 statsRepository.fetchStats(playerId)
             }
         }

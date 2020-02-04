@@ -6,6 +6,7 @@ import eu.yeger.r6_stats.domain.PlayerResponse
 import eu.yeger.r6_stats.network.NetworkService
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
+import timber.log.Timber
 
 class StatsRepository {
 
@@ -13,6 +14,7 @@ class StatsRepository {
     val player: LiveData<PlayerResponse> = _player
 
     suspend fun fetchStats(playerId: String) {
+        Timber.i("Fetching stats for id: $playerId")
         val playerResponse = withContext(Dispatchers.IO) {
             NetworkService.siegeApi.player(id = playerId)
         }
