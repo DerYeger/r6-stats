@@ -10,7 +10,7 @@ import eu.yeger.r6_stats.databinding.SearchFragmentBinding
 
 class SearchFragment : Fragment() {
 
-    private lateinit var searchViewModel: SearchViewModel
+    private lateinit var viewModel: SearchViewModel
 
     private lateinit var binding: SearchFragmentBinding
 
@@ -19,9 +19,9 @@ class SearchFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        searchViewModel = ViewModelProvider(this).get(SearchViewModel::class.java)
+        viewModel = ViewModelProvider(this).get(SearchViewModel::class.java)
         binding = SearchFragmentBinding.inflate(inflater).apply {
-            viewModel = searchViewModel
+            viewModel = viewModel
             lifecycleOwner = this@SearchFragment
             searchResultList.adapter = SearchResultAdapter()
         }

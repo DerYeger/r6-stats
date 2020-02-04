@@ -7,28 +7,30 @@ import androidx.lifecycle.viewModelScope
 import eu.yeger.r6_stats.domain.SearchResponse
 import eu.yeger.r6_stats.domain.SearchResult
 import eu.yeger.r6_stats.network.NetworkService
+import eu.yeger.r6_stats.repository.SearchRepository
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import timber.log.Timber
 
 class SearchViewModel : ViewModel() {
 
-    val searchString = MutableLiveData<String>()
+    private val searchRepository = SearchRepository()
 
-    private val _searchResults = MutableLiveData<List<SearchResult>>()
-    val searchResults: LiveData<List<SearchResult>> = _searchResults
+    val searchString = MutableLiveData<String>()
+    val searchResults = searchRepository.searchResults
 
     private val _searchInProgress = MutableLiveData<Boolean>()
     val searchInProgress: LiveData<Boolean> = _searchInProgress
 
     fun search() {
-        viewModelScope.launch {
-            _searchInProgress.value = true
-            val searchResponse: SearchResponse = withContext(Dispatchers.IO) {
-                NetworkService.siegeApi.search(name = searchString.value!!)
+        Timber.i("Searching: ${searchString.value}")
+//        searchString.value?.let {
+            viewModelScope.launch {
+                _searchInProgress.value = true
+                searchRepository.search(searchString.value!!)
+                _searchInProgress.value = false
             }
-            _searchResults.value = searchResponse?.results
-            _searchInProgress.value = false
-        }
+//        }
     }
 }

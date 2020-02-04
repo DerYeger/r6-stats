@@ -6,18 +6,11 @@
     app:startDestination="@id/navigation_search">
 
     <fragment
-        android:id="@+id/navigation_dashboard"
-        android:name="eu.yeger.r6_stats.ui.dashboard.DashboardFragment"
-        android:label="@string/title_dashboard"
-        tools:layout="@layout/fragment_dashboard" />
-
-    <fragment
-        android:id="@+id/navigation_notifications"
-        android:name="eu.yeger.r6_stats.ui.notifications.NotificationsFragment"
-        android:label="@string/title_notifications"
-        tools:layout="@layout/fragment_notifications" />
-    <fragment
         android:id="@+id/navigation_search"
         android:name="eu.yeger.r6_stats.ui.search.SearchFragment"
-        android:label="@string/search" />
+        android:label="@string/title_search" />
+    <fragment
+        android:id="@+id/navigation_stats"
+        android:name="eu.yeger.r6_stats.ui.stats.StatsFragment"
+        android:label="@string/title_stats" />
 </navigation>

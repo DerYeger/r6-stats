@@ -1,8 +1,7 @@
 <resources>
     <string name="app_name">r6-stats</string>
-    <string name="title_home">Home</string>
-    <string name="title_dashboard">Dashboard</string>
-    <string name="title_notifications">Notifications</string>
+    <string name="title_search">Search</string>
+    <string name="title_stats">Stats</string>
     <string name="search">Search</string>
     <string name="search_hint">Name</string>
     <string name="search_result_format">%2d. Name: %s Id: %s</string>
