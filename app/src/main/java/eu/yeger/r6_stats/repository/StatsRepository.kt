@@ -16,6 +16,6 @@ class StatsRepository {
         val playerResponse = withContext(Dispatchers.IO) {
             NetworkService.siegeApi.player(id = playerId)
         }
-        _player.value = playerResponse
+        _player.postValue(playerResponse)
     }
 }
