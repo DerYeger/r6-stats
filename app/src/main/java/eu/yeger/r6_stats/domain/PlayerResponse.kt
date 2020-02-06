@@ -33,7 +33,7 @@ data class PlayerResponse(
     val kd: Int
 ) {
     val ranked = GameMode(
-        playtime = stats[0].toDouble() / 360,
+        playtime = stats[0].toDouble() / 3600,
         kills = stats[1],
         deaths = stats[2],
         wins = stats[3],
@@ -41,7 +41,7 @@ data class PlayerResponse(
     )
 
     val casual = GameMode(
-        playtime = stats[5].toDouble() / 360,
+        playtime = stats[5].toDouble() / 3600,
         kills = stats[6],
         deaths = stats[7],
         wins = stats[8],
@@ -49,7 +49,7 @@ data class PlayerResponse(
     )
 
     val total = GameMode(
-        playtime = (stats[0] + stats[5]).toDouble() / 360,
+        playtime = (stats[0] + stats[5]).toDouble() / 3600,
         kills = stats[1] + stats[6],
         deaths = stats[2] + stats[7],
         wins = stats[3] + stats[8],

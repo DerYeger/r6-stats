@@ -8,6 +8,7 @@
     <string name="no_player">Select a player from the Search page.</string>
     <string name="name_format">Name: %s</string>
     <string name="level_format">Level %d</string>
+    <string name="total">Total</string>
     <string name="ranked">Ranked</string>
     <string name="casual">Casual</string>
     <string name="bomb">Bomb</string>
