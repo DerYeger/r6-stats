@@ -67,6 +67,7 @@
                         style="@style/TextAppearance.MaterialComponents.Subtitle1"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/default_spacing"
                         android:layout_marginTop="12dp"
                         android:layout_marginEnd="@dimen/default_spacing"
                         android:text="@{viewModel.player.platform}"
@@ -75,7 +76,7 @@
                         bind:layout_constraintStart_toEndOf="@+id/name_text"
                         bind:layout_constraintTop_toTopOf="parent"
                         bind:visible="@{viewModel.hasPlayer}"
-                        tools:text="PlayerName" />
+                        tools:text="Platform" />
 
                     <TextView
                         android:id="@+id/level_text"
