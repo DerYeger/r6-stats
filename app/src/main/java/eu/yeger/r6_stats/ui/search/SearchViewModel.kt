@@ -4,14 +4,8 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import eu.yeger.r6_stats.domain.SearchResponse
-import eu.yeger.r6_stats.domain.SearchResult
-import eu.yeger.r6_stats.network.NetworkService
 import eu.yeger.r6_stats.repository.SearchRepository
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
-import timber.log.Timber
 
 class SearchViewModel : ViewModel() {
 

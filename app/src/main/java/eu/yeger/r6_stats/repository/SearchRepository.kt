@@ -2,7 +2,6 @@ package eu.yeger.r6_stats.repository
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import eu.yeger.r6_stats.domain.SearchResponse
 import eu.yeger.r6_stats.domain.SearchResult
 import eu.yeger.r6_stats.network.NetworkService
 import kotlinx.coroutines.Dispatchers

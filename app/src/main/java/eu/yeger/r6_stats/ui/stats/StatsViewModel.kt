@@ -1,32 +1,27 @@
 package eu.yeger.r6_stats.ui.stats
 
-import android.view.View
-import androidx.lifecycle.Transformations
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.viewModelScope
+import androidx.lifecycle.*
 import eu.yeger.r6_stats.repository.StatsRepository
 import kotlinx.coroutines.launch
-import timber.log.Timber
 
-class StatsViewModel(playerId: String?) : ViewModel() {
+class StatsViewModel(val playerId: String?) : ViewModel() {
 
     private val statsRepository = StatsRepository()
 
     val player = statsRepository.player
+    val hasPlayer = Transformations.map(player) { it !== null }
 
-    val errorVisibility = Transformations.map(player) {
-        if (it == null) View.VISIBLE else View.GONE
-    }
-
-    val statsVisibility = Transformations.map(player) {
-        if (it == null) View.GONE else View.VISIBLE
+    private val _searchInProgress = MutableLiveData<Boolean>()
+    val progressBarVisible: LiveData<Boolean> = Transformations.map(_searchInProgress) {
+        it && playerId !== null
     }
 
     init {
         playerId?.let {
             viewModelScope.launch {
+                _searchInProgress.value = true
                 statsRepository.fetchStats(playerId)
+                _searchInProgress.value = false
             }
         }
     }

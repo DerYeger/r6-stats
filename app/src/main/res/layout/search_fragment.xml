@@ -65,10 +65,10 @@
             android:layout_marginEnd="@dimen/default_spacing"
             android:layout_marginBottom="@dimen/default_spacing"
             android:indeterminate="true"
-            android:visibility="@{viewModel.searchInProgress ? View.VISIBLE : View.GONE}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/search_text" />
+            app:layout_constraintTop_toBottomOf="@+id/search_text"
+            app:visible="@{viewModel.searchInProgress}" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
