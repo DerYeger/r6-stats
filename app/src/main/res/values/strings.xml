@@ -7,4 +7,5 @@
     <string name="search_result_format">%2d. Name: %s Id: %s</string>
     <string name="no_player">Select a player from the Search page.</string>
     <string name="name_format">Name: %s</string>
+    <string name="level_format">Level %d</string>
 </resources>
