@@ -8,4 +8,19 @@
     <string name="no_player">Select a player from the Search page.</string>
     <string name="name_format">Name: %s</string>
     <string name="level_format">Level %d</string>
+    <string name="ranked">Ranked</string>
+    <string name="casual">Casual</string>
+    <string name="bomb">Bomb</string>
+    <string name="secure">Secure Area</string>
+    <string name="hostage">Hostage</string>
+    <string name="playtime_format">%d hours played</string>
+    <string name="kills_format">%d kills</string>
+    <string name="deaths_format">%d deaths</string>
+    <string name="wins">%d wins</string>
+    <string name="losses">%d losses</string>
+    <string name="bullets_format">%d bullets fired</string>
+    <string name="headshots_format">%d headshot kills</string>
+    <string name="melees_format">%d melee kills</string>
+    <string name="revives_format">%d revives</string>
+    <string name="suicides_format">%d suicides</string>
 </resources>
