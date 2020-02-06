@@ -23,7 +23,8 @@
 
         <androidx.core.widget.NestedScrollView
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:clipToPadding="true">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
@@ -82,7 +83,7 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/name_text"
                     bind:gameMode="@{viewModel.player.casual}"
-                    bind:title="@{@string/casual}" />
+                    bind:gameModeName="@{@string/casual}" />
 
                 <include
                     android:id="@+id/ranked_card"
@@ -97,7 +98,7 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/casual_card"
                     bind:gameMode="@{viewModel.player.ranked}"
-                    bind:title="@{@string/ranked}" />
+                    bind:gameModeName="@{@string/ranked}" />
 
                 <include
                     android:id="@+id/total_card"
@@ -112,7 +113,52 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/ranked_card"
                     bind:gameMode="@{viewModel.player.total}"
-                    bind:title="@{@string/total}" />
+                    bind:gameModeName="@{@string/total}" />
+
+                <include
+                    android:id="@+id/bomb_card"
+                    layout="@layout/objective_type_card"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/default_spacing"
+                    android:layout_marginTop="@dimen/default_spacing"
+                    android:layout_marginEnd="@dimen/default_spacing"
+                    android:visibility="@{viewModel.hasPlayer ? View.VISIBLE : View.GONE}"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/total_card"
+                    bind:objectiveType="@{viewModel.player.bomb}"
+                    bind:objectiveTypeName="@{@string/bomb}" />
+
+                <include
+                    android:id="@+id/secure_area_card"
+                    layout="@layout/objective_type_card"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/default_spacing"
+                    android:layout_marginTop="@dimen/default_spacing"
+                    android:layout_marginEnd="@dimen/default_spacing"
+                    android:visibility="@{viewModel.hasPlayer ? View.VISIBLE : View.GONE}"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/bomb_card"
+                    bind:objectiveType="@{viewModel.player.secureArea}"
+                    bind:objectiveTypeName="@{@string/secure_area}" />
+
+                <include
+                    android:id="@+id/hostage_card"
+                    layout="@layout/objective_type_card"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/default_spacing"
+                    android:layout_marginTop="@dimen/default_spacing"
+                    android:layout_marginEnd="@dimen/default_spacing"
+                    android:visibility="@{viewModel.hasPlayer ? View.VISIBLE : View.GONE}"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/secure_area_card"
+                    bind:objectiveType="@{viewModel.player.hostage}"
+                    bind:objectiveTypeName="@{@string/hostage}" />
             </androidx.constraintlayout.widget.ConstraintLayout>
         </androidx.core.widget.NestedScrollView>
     </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>

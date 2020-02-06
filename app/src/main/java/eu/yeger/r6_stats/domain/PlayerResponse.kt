@@ -56,14 +56,20 @@ data class PlayerResponse(
         losses = stats[4] + stats[9]
     )
 
-    val bombWins = stats[10]
-    val bombLosses = stats[11]
+    val bomb = ObjectiveType(
+        wins = stats[10],
+        losses = stats[11]
+    )
 
-    val secureWins = stats[12]
-    val secureLosses = stats[13]
+    val secureArea = ObjectiveType(
+        wins = stats[12],
+        losses = stats[13]
+    )
 
-    val hostageWins = stats[14]
-    val hostageLosses = stats[15]
+    val hostage = ObjectiveType(
+        wins = stats[14],
+        losses = stats[15]
+    )
 
     val totalBullets = stats[16]
     val headshots = stats[17]
@@ -78,4 +84,14 @@ data class GameMode(
     val losses: Int,
     val kills: Int,
     val deaths: Int
-)
+) {
+    val winrate = wins.toDouble() / losses
+    val kd = kills.toDouble() / deaths
+}
+
+data class ObjectiveType(
+    val wins: Int,
+    val losses: Int
+) {
+    val winrate = wins.toDouble() / losses
+}

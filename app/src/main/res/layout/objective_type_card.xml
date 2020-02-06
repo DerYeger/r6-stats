@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+
+        <variable
+            name="objectiveTypeName"
+            type="String" />
+
+        <variable
+            name="objectiveType"
+            type="eu.yeger.r6_stats.domain.ObjectiveType" />
+    </data>
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="@dimen/default_spacing"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/objective_type_name_text"
+                style="@style/TextAppearance.MaterialComponents.Subtitle1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@{objectiveTypeName}" />
+
+            <TextView
+                android:id="@+id/objective_type_wins_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@{@string/wins_format(objectiveType.wins)}" />
+
+            <TextView
+                android:id="@+id/objective_type_losses_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@{@string/losses_format(objectiveType.losses)}" />
+
+            <TextView
+                android:id="@+id/objective_type_winrate_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@{@string/winrate_format(objectiveType.winrate)}" />
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+</layout>

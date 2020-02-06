@@ -4,7 +4,7 @@
     <data>
 
         <variable
-            name="title"
+            name="gameModeName"
             type="String" />
 
         <variable
@@ -23,11 +23,11 @@
             android:orientation="vertical">
 
             <TextView
-                android:id="@+id/game_mode_title_text"
+                android:id="@+id/game_mode_name_text"
                 style="@style/TextAppearance.MaterialComponents.Subtitle1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@{title}" />
+                android:text="@{gameModeName}" />
 
             <TextView
                 android:id="@+id/game_mode_playtime_text"
@@ -48,6 +48,12 @@
                 android:text="@{@string/losses_format(gameMode.losses)}" />
 
             <TextView
+                android:id="@+id/game_mode_winrate_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@{@string/winrate_format(gameMode.winrate)}" />
+
+            <TextView
                 android:id="@+id/game_mode_kills_text"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -58,6 +64,12 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@{@string/deaths_format(gameMode.deaths)}" />
+
+            <TextView
+                android:id="@+id/game_mode_kd_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@{@string/kd_format(gameMode.kd)}" />
         </LinearLayout>
     </androidx.cardview.widget.CardView>
 </layout>

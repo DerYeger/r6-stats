@@ -12,13 +12,15 @@
     <string name="ranked">Ranked</string>
     <string name="casual">Casual</string>
     <string name="bomb">Bomb</string>
-    <string name="secure">Secure Area</string>
+    <string name="secure_area">Secure Area</string>
     <string name="hostage">Hostage</string>
     <string name="playtime_format">%.2f hours played</string>
     <string name="kills_format">%d kills</string>
     <string name="deaths_format">%d deaths</string>
+    <string name="kd_format">%.2f K/D</string>
     <string name="wins_format">%d wins</string>
     <string name="losses_format">%d losses</string>
+    <string name="winrate_format">%.2f winrate</string>
     <string name="bullets_format">%d bullets fired</string>
     <string name="headshots_format">%d headshot kills</string>
     <string name="melees_format">%d melee kills</string>
