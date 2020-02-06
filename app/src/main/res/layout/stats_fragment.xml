@@ -13,160 +13,165 @@
             type="eu.yeger.r6_stats.ui.stats.StatsViewModel" />
     </data>
 
-    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
-        android:id="@+id/refresh_container"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:enabled="@{viewModel.playerId != null}"
-        app:onRefresh="@{() -> viewModel.refresh()}"
-        app:refreshing="@{viewModel.refreshing}">
+        android:layout_height="match_parent">
 
-        <androidx.core.widget.NestedScrollView
+        <TextView
+            android:id="@+id/no_player_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/default_spacing"
+            android:layout_marginTop="@dimen/default_spacing"
+            android:layout_marginEnd="@dimen/default_spacing"
+            android:layout_marginBottom="@dimen/default_spacing"
+            android:text="@string/no_player"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:visible="@{viewModel.playerId == null}" />
+
+        <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+            android:id="@+id/refresh_container"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:clipToPadding="true">
+            app:onRefresh="@{() -> viewModel.refresh()}"
+            app:refreshing="@{viewModel.refreshing}"
+            app:visible="@{viewModel.playerId != null}" >
 
-            <androidx.constraintlayout.widget.ConstraintLayout
+            <androidx.core.widget.NestedScrollView
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="match_parent"
+                android:clipToPadding="true">
 
-                <TextView
-                    android:id="@+id/no_player_text"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/default_spacing"
-                    android:layout_marginTop="@dimen/default_spacing"
-                    android:layout_marginEnd="@dimen/default_spacing"
-                    android:layout_marginBottom="@dimen/default_spacing"
-                    android:text="@string/no_player"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:visible="@{viewModel.playerId == null}" />
-
-                <TextView
-                    android:id="@+id/name_text"
-                    style="@style/TextAppearance.MaterialComponents.Headline6"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/default_spacing"
-                    android:layout_marginTop="@dimen/default_spacing"
-                    android:text="@{viewModel.player.name}"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:visible="@{viewModel.hasPlayer}"
-                    tools:text="PlayerName" />
-
-                <TextView
-                    android:id="@+id/platform_text"
-                    style="@style/TextAppearance.MaterialComponents.Subtitle1"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="12dp"
-                    android:layout_marginEnd="@dimen/default_spacing"
-                    android:text="@{viewModel.player.platform}"
-                    app:layout_constraintBaseline_toBaselineOf="@+id/name_text"
-                    app:layout_constraintEnd_toStartOf="@+id/level_text"
-                    bind:layout_constraintStart_toEndOf="@+id/name_text"
-                    bind:layout_constraintTop_toTopOf="parent"
-                    bind:visible="@{viewModel.hasPlayer}"
-                    tools:text="PlayerName" />
-
-                <TextView
-                    android:id="@+id/level_text"
-                    style="@style/TextAppearance.MaterialComponents.Body1"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginEnd="@dimen/default_spacing"
-                    android:text="@{@string/level_format(viewModel.player.level)}"
-                    app:layout_constraintBaseline_toBaselineOf="@+id/name_text"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:visible="@{viewModel.hasPlayer}"
-                    tools:text="Level 42" />
-
-                <androidx.appcompat.widget.LinearLayoutCompat
+                <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="vertical"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/name_text"
-                    tools:layout_editor_absoluteY="0dp">
+                    android:layout_height="match_parent">
 
-                    <include
-                        android:id="@+id/casual_card"
-                        layout="@layout/game_mode_card"
-                        android:layout_width="match_parent"
+                    <TextView
+                        android:id="@+id/name_text"
+                        style="@style/TextAppearance.MaterialComponents.Headline6"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="@dimen/default_spacing"
                         android:layout_marginTop="@dimen/default_spacing"
-                        android:layout_marginEnd="@dimen/default_spacing"
-                        android:visibility="@{viewModel.hasPlayer ? View.VISIBLE : View.GONE}"
-                        bind:gameMode="@{viewModel.player.casual}"
-                        bind:gameModeName="@{@string/casual}" />
+                        android:text="@{viewModel.player.name}"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:visible="@{viewModel.hasPlayer}"
+                        tools:text="PlayerName" />
 
-                    <include
-                        android:id="@+id/ranked_card"
-                        layout="@layout/game_mode_card"
-                        android:layout_width="match_parent"
+                    <TextView
+                        android:id="@+id/platform_text"
+                        style="@style/TextAppearance.MaterialComponents.Subtitle1"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="@dimen/default_spacing"
-                        android:layout_marginTop="@dimen/default_spacing"
+                        android:layout_marginTop="12dp"
                         android:layout_marginEnd="@dimen/default_spacing"
-                        android:visibility="@{viewModel.hasPlayer ? View.VISIBLE : View.GONE}"
-                        bind:gameMode="@{viewModel.player.ranked}"
-                        bind:gameModeName="@{@string/ranked}" />
+                        android:text="@{viewModel.player.platform}"
+                        app:layout_constraintBaseline_toBaselineOf="@+id/name_text"
+                        app:layout_constraintEnd_toStartOf="@+id/level_text"
+                        bind:layout_constraintStart_toEndOf="@+id/name_text"
+                        bind:layout_constraintTop_toTopOf="parent"
+                        bind:visible="@{viewModel.hasPlayer}"
+                        tools:text="PlayerName" />
 
-                    <include
-                        android:id="@+id/total_card"
-                        layout="@layout/game_mode_card"
-                        android:layout_width="match_parent"
+                    <TextView
+                        android:id="@+id/level_text"
+                        style="@style/TextAppearance.MaterialComponents.Body1"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="@dimen/default_spacing"
-                        android:layout_marginTop="@dimen/default_spacing"
                         android:layout_marginEnd="@dimen/default_spacing"
-                        android:visibility="@{viewModel.hasPlayer ? View.VISIBLE : View.GONE}"
-                        bind:gameMode="@{viewModel.player.total}"
-                        bind:gameModeName="@{@string/total}" />
+                        android:text="@{@string/level_format(viewModel.player.level)}"
+                        app:layout_constraintBaseline_toBaselineOf="@+id/name_text"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:visible="@{viewModel.hasPlayer}"
+                        tools:text="Level 42" />
 
-                    <include
-                        android:id="@+id/bomb_card"
-                        layout="@layout/objective_type_card"
+                    <androidx.appcompat.widget.LinearLayoutCompat
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="@dimen/default_spacing"
-                        android:layout_marginTop="@dimen/default_spacing"
-                        android:layout_marginEnd="@dimen/default_spacing"
-                        android:visibility="@{viewModel.hasPlayer ? View.VISIBLE : View.GONE}"
-                        bind:objectiveType="@{viewModel.player.bomb}"
-                        bind:objectiveTypeName="@{@string/bomb}" />
+                        android:layout_height="match_parent"
+                        android:orientation="vertical"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/name_text"
+                        tools:layout_editor_absoluteY="0dp">
 
-                    <include
-                        android:id="@+id/secure_area_card"
-                        layout="@layout/objective_type_card"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="@dimen/default_spacing"
-                        android:layout_marginTop="@dimen/default_spacing"
-                        android:layout_marginEnd="@dimen/default_spacing"
-                        android:visibility="@{viewModel.hasPlayer ? View.VISIBLE : View.GONE}"
-                        bind:objectiveType="@{viewModel.player.secureArea}"
-                        bind:objectiveTypeName="@{@string/secure_area}" />
+                        <include
+                            android:id="@+id/casual_card"
+                            layout="@layout/game_mode_card"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/default_spacing"
+                            android:layout_marginTop="@dimen/default_spacing"
+                            android:layout_marginEnd="@dimen/default_spacing"
+                            android:visibility="@{viewModel.hasPlayer ? View.VISIBLE : View.GONE}"
+                            bind:gameMode="@{viewModel.player.casual}"
+                            bind:gameModeName="@{@string/casual}" />
 
-                    <include
-                        android:id="@+id/hostage_card"
-                        layout="@layout/objective_type_card"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="@dimen/default_spacing"
-                        android:layout_marginTop="@dimen/default_spacing"
-                        android:layout_marginEnd="@dimen/default_spacing"
-                        android:visibility="@{viewModel.hasPlayer ? View.VISIBLE : View.GONE}"
-                        bind:objectiveType="@{viewModel.player.hostage}"
-                        bind:objectiveTypeName="@{@string/hostage}" />
-                </androidx.appcompat.widget.LinearLayoutCompat>
-            </androidx.constraintlayout.widget.ConstraintLayout>
-        </androidx.core.widget.NestedScrollView>
-    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+                        <include
+                            android:id="@+id/ranked_card"
+                            layout="@layout/game_mode_card"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/default_spacing"
+                            android:layout_marginTop="@dimen/default_spacing"
+                            android:layout_marginEnd="@dimen/default_spacing"
+                            android:visibility="@{viewModel.hasPlayer ? View.VISIBLE : View.GONE}"
+                            bind:gameMode="@{viewModel.player.ranked}"
+                            bind:gameModeName="@{@string/ranked}" />
+
+                        <include
+                            android:id="@+id/total_card"
+                            layout="@layout/game_mode_card"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/default_spacing"
+                            android:layout_marginTop="@dimen/default_spacing"
+                            android:layout_marginEnd="@dimen/default_spacing"
+                            android:visibility="@{viewModel.hasPlayer ? View.VISIBLE : View.GONE}"
+                            bind:gameMode="@{viewModel.player.total}"
+                            bind:gameModeName="@{@string/total}" />
+
+                        <include
+                            android:id="@+id/bomb_card"
+                            layout="@layout/objective_type_card"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/default_spacing"
+                            android:layout_marginTop="@dimen/default_spacing"
+                            android:layout_marginEnd="@dimen/default_spacing"
+                            android:visibility="@{viewModel.hasPlayer ? View.VISIBLE : View.GONE}"
+                            bind:objectiveType="@{viewModel.player.bomb}"
+                            bind:objectiveTypeName="@{@string/bomb}" />
+
+                        <include
+                            android:id="@+id/secure_area_card"
+                            layout="@layout/objective_type_card"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/default_spacing"
+                            android:layout_marginTop="@dimen/default_spacing"
+                            android:layout_marginEnd="@dimen/default_spacing"
+                            android:visibility="@{viewModel.hasPlayer ? View.VISIBLE : View.GONE}"
+                            bind:objectiveType="@{viewModel.player.secureArea}"
+                            bind:objectiveTypeName="@{@string/secure_area}" />
+
+                        <include
+                            android:id="@+id/hostage_card"
+                            layout="@layout/objective_type_card"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/default_spacing"
+                            android:layout_marginTop="@dimen/default_spacing"
+                            android:layout_marginEnd="@dimen/default_spacing"
+                            android:visibility="@{viewModel.hasPlayer ? View.VISIBLE : View.GONE}"
+                            bind:objectiveType="@{viewModel.player.hostage}"
+                            bind:objectiveTypeName="@{@string/hostage}" />
+                    </androidx.appcompat.widget.LinearLayoutCompat>
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </androidx.core.widget.NestedScrollView>
+        </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
