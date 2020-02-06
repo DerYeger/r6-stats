@@ -11,17 +11,21 @@ class StatsViewModel(val playerId: String?) : ViewModel() {
     val player = statsRepository.player
     val hasPlayer = Transformations.map(player) { it !== null }
 
-    private val _searchInProgress = MutableLiveData<Boolean>()
-    val progressBarVisible: LiveData<Boolean> = Transformations.map(_searchInProgress) {
+    private val _refreshing = MutableLiveData<Boolean>()
+    val refreshing: LiveData<Boolean> = Transformations.map(_refreshing) {
         it && playerId !== null
     }
 
     init {
+        refresh()
+    }
+
+    fun refresh() {
         playerId?.let {
             viewModelScope.launch {
-                _searchInProgress.value = true
+                _refreshing.value = true
                 statsRepository.fetchStats(playerId)
-                _searchInProgress.value = false
+                _refreshing.value = false
             }
         }
     }
