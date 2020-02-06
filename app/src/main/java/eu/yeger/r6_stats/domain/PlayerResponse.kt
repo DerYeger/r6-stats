@@ -2,6 +2,7 @@ package eu.yeger.r6_stats.domain
 
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
+import eu.yeger.r6_stats.ratio
 
 @JsonClass(generateAdapter = true)
 data class PlayerResponse(
@@ -85,13 +86,13 @@ data class GameMode(
     val kills: Int,
     val deaths: Int
 ) {
-    val winrate = wins.toDouble() / losses
-    val kd = kills.toDouble() / deaths
+    val winrate = ratio(wins, losses)
+    val kd = ratio(kills, deaths)
 }
 
 data class ObjectiveType(
     val wins: Int,
     val losses: Int
 ) {
-    val winrate = wins.toDouble() / losses
+    val winrate = ratio(wins, losses)
 }
