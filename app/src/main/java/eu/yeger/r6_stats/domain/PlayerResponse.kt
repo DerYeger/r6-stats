@@ -32,17 +32,29 @@ data class PlayerResponse(
     @Json(name = "kd")
     val kd: Int
 ) {
-    val rankedPlaytime = stats[0]
-    val rankedKills = stats[1]
-    val rankedDeaths = stats[2]
-    val rankedWins = stats[3]
-    val rankedLosses = stats[4]
+    val ranked = GameMode(
+        playtime = stats[0].toDouble() / 360,
+        kills = stats[1],
+        deaths = stats[2],
+        wins = stats[3],
+        losses = stats[4]
+    )
 
-    val casualPlaytime = stats[5]
-    val casualKills = stats[6]
-    val casualDeaths = stats[7]
-    val casualWins = stats[8]
-    val casualLosses = stats[9]
+    val casual = GameMode(
+        playtime = stats[5].toDouble() / 360,
+        kills = stats[6],
+        deaths = stats[7],
+        wins = stats[8],
+        losses = stats[9]
+    )
+
+    val total = GameMode(
+        playtime = (stats[0] + stats[5]).toDouble() / 360,
+        kills = stats[1] + stats[6],
+        deaths = stats[2] + stats[7],
+        wins = stats[3] + stats[8],
+        losses = stats[4] + stats[9]
+    )
 
     val bombWins = stats[10]
     val bombLosses = stats[11]
@@ -59,3 +71,11 @@ data class PlayerResponse(
     val revives = stats[19]
     val suicides = stats[20]
 }
+
+data class GameMode(
+    val playtime: Double,
+    val wins: Int,
+    val losses: Int,
+    val kills: Int,
+    val deaths: Int
+)
