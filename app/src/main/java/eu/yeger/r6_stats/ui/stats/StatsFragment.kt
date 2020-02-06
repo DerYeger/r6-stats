@@ -23,7 +23,7 @@ class StatsFragment : Fragment() {
         val viewModelFactory = StatsViewModel.Factory(playerId)
         viewModel = ViewModelProvider(this, viewModelFactory).get(StatsViewModel::class.java)
         binding = StatsFragmentBinding.inflate(inflater).apply {
-            viewModel = viewModel
+            viewModel = this@StatsFragment.viewModel
             lifecycleOwner = this@StatsFragment
         }
         return binding.root

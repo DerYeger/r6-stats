@@ -27,7 +27,6 @@ class StatsViewModel(playerId: String?) : ViewModel() {
         playerId?.let {
             viewModelScope.launch {
                 statsRepository.fetchStats(playerId)
-                Timber.i(player.value?.name)
             }
         }
     }
