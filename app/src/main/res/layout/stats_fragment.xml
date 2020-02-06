@@ -63,10 +63,10 @@
                     style="@style/TextAppearance.MaterialComponents.Body1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/default_spacing"
+                    android:layout_marginEnd="@dimen/default_spacing"
                     android:text="@{@string/level_format(viewModel.player.level)}"
                     app:layout_constraintBaseline_toBaselineOf="@+id/name_text"
-                    app:layout_constraintStart_toEndOf="@+id/name_text"
+                    app:layout_constraintEnd_toEndOf="parent"
                     app:visible="@{viewModel.hasPlayer}"
                     tools:text="Level 42" />
 

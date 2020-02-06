@@ -36,16 +36,10 @@
                 android:text="@{@string/playtime_format(gameMode.playtime)}" />
 
             <TextView
-                android:id="@+id/game_mode_wins_text"
-                android:layout_width="match_parent"
+                android:id="@+id/game_mode_wins_losses_text"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@{@string/wins_format(gameMode.wins)}" />
-
-            <TextView
-                android:id="@+id/game_mode_losses_text"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@{@string/losses_format(gameMode.losses)}" />
+                android:text="@{@string/win_loss_format(gameMode.wins, gameMode.losses)}" />
 
             <TextView
                 android:id="@+id/game_mode_winrate_text"
@@ -54,16 +48,10 @@
                 android:text="@{@string/winrate_format(gameMode.winrate)}" />
 
             <TextView
-                android:id="@+id/game_mode_kills_text"
-                android:layout_width="match_parent"
+                android:id="@+id/game_mode_kills_deaths_text"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@{@string/kills_format(gameMode.kills)}" />
-
-            <TextView
-                android:id="@+id/game_mode_deaths_text"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@{@string/deaths_format(gameMode.deaths)}" />
+                android:text="@{@string/kill_death_format(gameMode.kills, gameMode.deaths)}" />
 
             <TextView
                 android:id="@+id/game_mode_kd_text"

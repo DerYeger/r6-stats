@@ -30,16 +30,10 @@
                 android:text="@{objectiveTypeName}" />
 
             <TextView
-                android:id="@+id/objective_type_wins_text"
+                android:id="@+id/objective_type_wins_losses_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@{@string/wins_format(objectiveType.wins)}" />
-
-            <TextView
-                android:id="@+id/objective_type_losses_text"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@{@string/losses_format(objectiveType.losses)}" />
+                android:text="@{@string/win_loss_format(objectiveType.wins, objectiveType.losses)}" />
 
             <TextView
                 android:id="@+id/objective_type_winrate_text"
