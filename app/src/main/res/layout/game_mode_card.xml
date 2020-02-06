@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android">
+<layout xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android">
 
     <data>
 
@@ -27,37 +28,43 @@
                 style="@style/TextAppearance.MaterialComponents.Subtitle1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@{gameModeName}" />
+                android:text="@{gameModeName}"
+                tools:text="Casual" />
 
             <TextView
                 android:id="@+id/game_mode_playtime_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@{@string/playtime_format(gameMode.playtime)}" />
+                android:text="@{@string/playtime_format(gameMode.playtime)}"
+                tools:text="1 hour" />
 
             <TextView
                 android:id="@+id/game_mode_wins_losses_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@{@string/win_loss_format(gameMode.wins, gameMode.losses)}" />
+                android:text="@{@string/win_loss_format(gameMode.wins, gameMode.losses)}"
+                tools:text="1 win - 1 loss" />
 
             <TextView
                 android:id="@+id/game_mode_winrate_text"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@{@string/winrate_format(gameMode.winrate)}" />
+                android:text="@{@string/winrate_format(gameMode.winrate)}"
+                tools:text="1 winrate" />
 
             <TextView
                 android:id="@+id/game_mode_kills_deaths_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@{@string/kill_death_format(gameMode.kills, gameMode.deaths)}" />
+                android:text="@{@string/kill_death_format(gameMode.kills, gameMode.deaths)}"
+                tools:text="1 kill - 1 death" />
 
             <TextView
                 android:id="@+id/game_mode_kd_text"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@{@string/kd_format(gameMode.kd)}" />
+                android:text="@{@string/kd_format(gameMode.kd)}"
+                tools:text="1 K/D" />
         </LinearLayout>
     </androidx.cardview.widget.CardView>
 </layout>

@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:tools="http://schemas.android.com/tools"
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:bind="http://schemas.android.com/apk/res-auto">
+    xmlns:bind="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <data>
 
@@ -70,95 +70,87 @@
                     app:visible="@{viewModel.hasPlayer}"
                     tools:text="Level 42" />
 
-                <include
-                    android:id="@+id/casual_card"
-                    layout="@layout/game_mode_card"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/default_spacing"
-                    android:layout_marginTop="@dimen/default_spacing"
-                    android:layout_marginEnd="@dimen/default_spacing"
-                    android:visibility="@{viewModel.hasPlayer ? View.VISIBLE : View.GONE}"
+                <androidx.appcompat.widget.LinearLayoutCompat
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/name_text"
-                    bind:gameMode="@{viewModel.player.casual}"
-                    bind:gameModeName="@{@string/casual}" />
+                    app:layout_constraintTop_toBottomOf="@id/name_text"
+                    tools:layout_editor_absoluteY="0dp">
 
-                <include
-                    android:id="@+id/ranked_card"
-                    layout="@layout/game_mode_card"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/default_spacing"
-                    android:layout_marginTop="@dimen/default_spacing"
-                    android:layout_marginEnd="@dimen/default_spacing"
-                    android:visibility="@{viewModel.hasPlayer ? View.VISIBLE : View.GONE}"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/casual_card"
-                    bind:gameMode="@{viewModel.player.ranked}"
-                    bind:gameModeName="@{@string/ranked}" />
+                    <include
+                        android:id="@+id/casual_card"
+                        layout="@layout/game_mode_card"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/default_spacing"
+                        android:layout_marginTop="@dimen/default_spacing"
+                        android:layout_marginEnd="@dimen/default_spacing"
+                        android:visibility="@{viewModel.hasPlayer ? View.VISIBLE : View.GONE}"
+                        bind:gameMode="@{viewModel.player.casual}"
+                        bind:gameModeName="@{@string/casual}" />
 
-                <include
-                    android:id="@+id/total_card"
-                    layout="@layout/game_mode_card"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/default_spacing"
-                    android:layout_marginTop="@dimen/default_spacing"
-                    android:layout_marginEnd="@dimen/default_spacing"
-                    android:visibility="@{viewModel.hasPlayer ? View.VISIBLE : View.GONE}"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/ranked_card"
-                    bind:gameMode="@{viewModel.player.total}"
-                    bind:gameModeName="@{@string/total}" />
+                    <include
+                        android:id="@+id/ranked_card"
+                        layout="@layout/game_mode_card"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/default_spacing"
+                        android:layout_marginTop="@dimen/default_spacing"
+                        android:layout_marginEnd="@dimen/default_spacing"
+                        android:visibility="@{viewModel.hasPlayer ? View.VISIBLE : View.GONE}"
+                        bind:gameMode="@{viewModel.player.ranked}"
+                        bind:gameModeName="@{@string/ranked}" />
 
-                <include
-                    android:id="@+id/bomb_card"
-                    layout="@layout/objective_type_card"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/default_spacing"
-                    android:layout_marginTop="@dimen/default_spacing"
-                    android:layout_marginEnd="@dimen/default_spacing"
-                    android:visibility="@{viewModel.hasPlayer ? View.VISIBLE : View.GONE}"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/total_card"
-                    bind:objectiveType="@{viewModel.player.bomb}"
-                    bind:objectiveTypeName="@{@string/bomb}" />
+                    <include
+                        android:id="@+id/total_card"
+                        layout="@layout/game_mode_card"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/default_spacing"
+                        android:layout_marginTop="@dimen/default_spacing"
+                        android:layout_marginEnd="@dimen/default_spacing"
+                        android:visibility="@{viewModel.hasPlayer ? View.VISIBLE : View.GONE}"
+                        bind:gameMode="@{viewModel.player.total}"
+                        bind:gameModeName="@{@string/total}" />
 
-                <include
-                    android:id="@+id/secure_area_card"
-                    layout="@layout/objective_type_card"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/default_spacing"
-                    android:layout_marginTop="@dimen/default_spacing"
-                    android:layout_marginEnd="@dimen/default_spacing"
-                    android:visibility="@{viewModel.hasPlayer ? View.VISIBLE : View.GONE}"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/bomb_card"
-                    bind:objectiveType="@{viewModel.player.secureArea}"
-                    bind:objectiveTypeName="@{@string/secure_area}" />
+                    <include
+                        android:id="@+id/bomb_card"
+                        layout="@layout/objective_type_card"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/default_spacing"
+                        android:layout_marginTop="@dimen/default_spacing"
+                        android:layout_marginEnd="@dimen/default_spacing"
+                        android:visibility="@{viewModel.hasPlayer ? View.VISIBLE : View.GONE}"
+                        bind:objectiveType="@{viewModel.player.bomb}"
+                        bind:objectiveTypeName="@{@string/bomb}" />
 
-                <include
-                    android:id="@+id/hostage_card"
-                    layout="@layout/objective_type_card"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/default_spacing"
-                    android:layout_marginTop="@dimen/default_spacing"
-                    android:layout_marginEnd="@dimen/default_spacing"
-                    android:visibility="@{viewModel.hasPlayer ? View.VISIBLE : View.GONE}"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/secure_area_card"
-                    bind:objectiveType="@{viewModel.player.hostage}"
-                    bind:objectiveTypeName="@{@string/hostage}" />
+                    <include
+                        android:id="@+id/secure_area_card"
+                        layout="@layout/objective_type_card"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/default_spacing"
+                        android:layout_marginTop="@dimen/default_spacing"
+                        android:layout_marginEnd="@dimen/default_spacing"
+                        android:visibility="@{viewModel.hasPlayer ? View.VISIBLE : View.GONE}"
+                        bind:objectiveType="@{viewModel.player.secureArea}"
+                        bind:objectiveTypeName="@{@string/secure_area}" />
+
+                    <include
+                        android:id="@+id/hostage_card"
+                        layout="@layout/objective_type_card"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/default_spacing"
+                        android:layout_marginTop="@dimen/default_spacing"
+                        android:layout_marginEnd="@dimen/default_spacing"
+                        android:visibility="@{viewModel.hasPlayer ? View.VISIBLE : View.GONE}"
+                        bind:objectiveType="@{viewModel.player.hostage}"
+                        bind:objectiveTypeName="@{@string/hostage}" />
+                </androidx.appcompat.widget.LinearLayoutCompat>
             </androidx.constraintlayout.widget.ConstraintLayout>
         </androidx.core.widget.NestedScrollView>
     </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>

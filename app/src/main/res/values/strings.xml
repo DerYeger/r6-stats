@@ -21,7 +21,7 @@
     <string name="secure_area">Secure Area</string>
     <string name="hostage">Hostage</string>
 
-    <string name="playtime_format">%.2f hours played</string>
+    <string name="playtime_format">%.2f hours</string>
 
     <string name="kills_format">%d kills</string>
     <string name="deaths_format">%d deaths</string>
