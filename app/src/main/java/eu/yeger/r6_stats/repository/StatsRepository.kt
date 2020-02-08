@@ -20,10 +20,12 @@ class StatsRepository(context: Context, playerId: String) {
             NetworkService.siegeApi.player(id = playerId)
         }
         val player = playerResponse.toDomainModel()
-        if (currentPlayer.value === null) {
-            database.playerDao.insert(player)
-        } else {
-            database.playerDao.update(player)
+        withContext(Dispatchers.IO) {
+            if (currentPlayer.value === null) {
+                database.playerDao.insert(player)
+            } else {
+                database.playerDao.update(player)
+            }
         }
     }
 }

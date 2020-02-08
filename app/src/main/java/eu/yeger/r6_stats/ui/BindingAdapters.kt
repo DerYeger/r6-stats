@@ -1,9 +1,12 @@
 package eu.yeger.r6_stats.ui
 
 import android.view.View
+import android.widget.ImageView
+import androidx.core.net.toUri
 import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+import com.bumptech.glide.Glide
 import eu.yeger.r6_stats.domain.SearchResult
 import eu.yeger.r6_stats.ui.search.SearchResultAdapter
 
@@ -23,4 +26,19 @@ fun SwipeRefreshLayout.bindSwipeRefreshLayout(listener: Runnable) {
     setOnRefreshListener {
         listener.run()
     }
+}
+
+@BindingAdapter("imageUrl")
+fun ImageView.bindImage(imageUrl: String?) {
+    imageUrl?.let {
+        val imgUri = imageUrl.toUri().buildUpon().scheme("https").build()
+        Glide.with(context)
+            .load(imgUri)
+            .into(this)
+    }
+}
+
+@BindingAdapter("ubiUserId")
+fun ImageView.bind(userId: String?) {
+    bindImage("https://ubisoft-avatars.akamaized.net/${userId}/default_146_146.png")
 }
