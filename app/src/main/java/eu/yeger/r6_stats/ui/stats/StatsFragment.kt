@@ -23,7 +23,7 @@ class StatsFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         val playerId = StatsFragmentArgs.fromBundle(arguments!!).playerId ?: fromSharedPreferences("player_id")
-        val viewModelFactory = StatsViewModel.Factory(playerId)
+        val viewModelFactory = StatsViewModel.Factory(activity!!.application, playerId)
         viewModel = ViewModelProvider(this, viewModelFactory).get(StatsViewModel::class.java)
         viewModel.savePlayerIdEvent.observe(this, Observer {
             if (it !== null) {

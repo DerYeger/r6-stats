@@ -37,13 +37,11 @@ data class PlayerResponse(
 )
 
 fun PlayerResponse.toDomainModel(): Player = Player(
-    info = Player.Info(
-        name = name,
-        level = level,
-        platform = platform,
-        id = id,
-        userId = user
-    ),
+    name = name,
+    level = level,
+    platform = platform,
+    id = id,
+    userId = user,
     generalStats = Player.GeneralStats(
         totalBullets = stats[16],
         headshots = stats[17],

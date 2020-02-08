@@ -1,23 +1,29 @@
 package eu.yeger.r6_stats.repository
 
+import android.content.Context
 import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
+import eu.yeger.r6_stats.database.getDatabase
 import eu.yeger.r6_stats.domain.Player
 import eu.yeger.r6_stats.network.NetworkService
 import eu.yeger.r6_stats.network.toDomainModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 
-class StatsRepository {
+class StatsRepository(context: Context, playerId: String) {
 
-    private val _player = MutableLiveData<Player>()
-    val player: LiveData<Player> = _player
+    private val database = getDatabase(context)
 
-    suspend fun fetchStats(playerId: String) {
+    val currentPlayer: LiveData<Player> = database.playerDao.get(playerId)
+
+    suspend fun fetchPlayer(playerId: String) {
         val playerResponse = withContext(Dispatchers.IO) {
             NetworkService.siegeApi.player(id = playerId)
         }
         val player = playerResponse.toDomainModel()
-        _player.postValue(player)
+        if (currentPlayer.value === null) {
+            database.playerDao.insert(player)
+        } else {
+            database.playerDao.update(player)
+        }
     }
 }
