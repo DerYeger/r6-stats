@@ -17,9 +17,6 @@ class StatsViewModel(application: Application, val playerId: String?) : ViewMode
         it && playerId !== null
     }
 
-    private val _savePlayerIdEvent = MutableLiveData<String>()
-    val savePlayerIdEvent: LiveData<String> = _savePlayerIdEvent
-
     init {
         refresh()
     }
@@ -32,14 +29,6 @@ class StatsViewModel(application: Application, val playerId: String?) : ViewMode
                 _refreshing.value = false
             }
         }
-    }
-
-    fun saveCurrentPlayerId() {
-        _savePlayerIdEvent.value = playerId
-    }
-
-    fun onCurrentPlayerIdSaved() {
-        _savePlayerIdEvent.value = null
     }
 
     class Factory(

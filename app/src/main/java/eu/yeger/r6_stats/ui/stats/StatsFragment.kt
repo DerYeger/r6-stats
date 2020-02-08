@@ -11,7 +11,11 @@ import eu.yeger.r6_stats.databinding.StatsFragmentBinding
 import eu.yeger.r6_stats.fromSharedPreferences
 import eu.yeger.r6_stats.saveToSharedPreferences
 
+private const val LAST_PLAYER_ID = "last_player_id"
+
 class StatsFragment : Fragment() {
+
+
 
     private lateinit var viewModel: StatsViewModel
 
@@ -22,15 +26,9 @@ class StatsFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        val playerId = StatsFragmentArgs.fromBundle(arguments!!).playerId ?: fromSharedPreferences("player_id")
+        val playerId = StatsFragmentArgs.fromBundle(arguments!!).playerId?.also { saveToSharedPreferences(LAST_PLAYER_ID, it) } ?: fromSharedPreferences(LAST_PLAYER_ID)
         val viewModelFactory = StatsViewModel.Factory(activity!!.application, playerId)
         viewModel = ViewModelProvider(this, viewModelFactory).get(StatsViewModel::class.java)
-        viewModel.savePlayerIdEvent.observe(this, Observer {
-            if (it !== null) {
-                saveToSharedPreferences("player_id", it)
-                viewModel.onCurrentPlayerIdSaved()
-            }
-        })
         binding = StatsFragmentBinding.inflate(inflater).apply {
             viewModel = this@StatsFragment.viewModel
             lifecycleOwner = this@StatsFragment
