@@ -33,6 +33,7 @@
     <string name="win_loss_format">%d wins - %d losses</string>
     <string name="winrate_format">%.2f winrate</string>
 
+    <string name="general_stats">General</string>
     <string name="bullets_format">%d bullets fired</string>
     <string name="headshots_format">%d headshot kills</string>
     <string name="melees_format">%d melee kills</string>

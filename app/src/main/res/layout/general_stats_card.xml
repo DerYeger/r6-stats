@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="generalStats"
+            type="eu.yeger.r6_stats.domain.Player.GeneralStats" />
+    </data>
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="@dimen/default_spacing"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/general_stats_title_text"
+                style="@style/TextAppearance.MaterialComponents.Subtitle1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/half_spacing"
+                android:text="@string/general_stats" />
+
+            <TextView
+                android:id="@+id/general_stats_total_bullets_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@{@string/bullets_format(generalStats.totalBullets)}"
+                tools:text="1 bullets fired" />
+
+            <TextView
+                android:id="@+id/general_stats_headshots_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@{@string/headshots_format(generalStats.headshots)}"
+                tools:text="1 headshots" />
+
+            <TextView
+                android:id="@+id/general_stats_melees_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@{@string/melees_format(generalStats.melees)}"
+                tools:text="1 melee" />
+
+            <TextView
+                android:id="@+id/general_stats_revives_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@{@string/revives_format(generalStats.revives)}"
+                tools:text="1 headshots" />
+
+            <TextView
+                android:id="@+id/general_stats_suicides_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@{@string/suicides_format(generalStats.suicides)}"
+                tools:text="1 melee" />
+        </androidx.appcompat.widget.LinearLayoutCompat>
+    </androidx.cardview.widget.CardView>
+</layout>
