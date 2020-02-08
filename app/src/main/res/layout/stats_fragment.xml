@@ -38,7 +38,7 @@
             android:layout_height="match_parent"
             app:onRefresh="@{() -> viewModel.refresh()}"
             app:refreshing="@{viewModel.refreshing}"
-            app:visible="@{viewModel.playerId != null}" >
+            app:visible="@{viewModel.playerId != null}">
 
             <androidx.core.widget.NestedScrollView
                 android:layout_width="match_parent"
@@ -68,7 +68,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="@dimen/default_spacing"
-                        android:layout_marginTop="@dimen/half_spacing"
+                        android:layout_marginTop="@dimen/quarter_spacing"
                         android:text="@{@string/level_format(viewModel.player.level)}"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/name_text"
@@ -81,7 +81,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="@dimen/default_spacing"
-                        android:layout_marginTop="@dimen/half_spacing"
+                        android:layout_marginTop="@dimen/quarter_spacing"
                         android:text="@{viewModel.player.platform}"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/level_text"
@@ -95,6 +95,18 @@
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/platform_text">
+
+                        <include
+                            android:id="@+id/total_card"
+                            layout="@layout/game_mode_card"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/default_spacing"
+                            android:layout_marginTop="@dimen/default_spacing"
+                            android:layout_marginEnd="@dimen/default_spacing"
+                            android:visibility="@{viewModel.hasPlayer ? View.VISIBLE : View.GONE}"
+                            bind:gameMode="@{viewModel.player.total}"
+                            bind:gameModeName="@{@string/total}" />
 
                         <include
                             android:id="@+id/casual_card"
@@ -119,18 +131,6 @@
                             android:visibility="@{viewModel.hasPlayer ? View.VISIBLE : View.GONE}"
                             bind:gameMode="@{viewModel.player.ranked}"
                             bind:gameModeName="@{@string/ranked}" />
-
-                        <include
-                            android:id="@+id/total_card"
-                            layout="@layout/game_mode_card"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginStart="@dimen/default_spacing"
-                            android:layout_marginTop="@dimen/default_spacing"
-                            android:layout_marginEnd="@dimen/default_spacing"
-                            android:visibility="@{viewModel.hasPlayer ? View.VISIBLE : View.GONE}"
-                            bind:gameMode="@{viewModel.player.total}"
-                            bind:gameModeName="@{@string/total}" />
 
                         <include
                             android:id="@+id/bomb_card"
@@ -173,11 +173,11 @@
                         android:id="@+id/imageView"
                         android:layout_width="wrap_content"
                         android:layout_height="0dp"
-                        app:ubiUserId="@{viewModel.player.userId}"
                         android:layout_marginEnd="@dimen/default_spacing"
                         app:layout_constraintBottom_toBottomOf="@+id/platform_text"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintTop_toTopOf="@+id/name_text"
+                        app:ubiUserId="@{viewModel.player.userId}"
                         tools:srcCompat="@tools:sample/avatars" />
                 </androidx.constraintlayout.widget.ConstraintLayout>
             </androidx.core.widget.NestedScrollView>

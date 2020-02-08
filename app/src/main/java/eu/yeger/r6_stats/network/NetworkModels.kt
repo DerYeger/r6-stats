@@ -39,7 +39,7 @@ data class PlayerResponse(
 fun PlayerResponse.toDomainModel(): Player = Player(
     name = name,
     level = level,
-    platform = platform,
+    platform = networkPlatformToDomainPlatform(platform),
     id = id,
     userId = user,
     generalStats = Player.GeneralStats(
@@ -83,4 +83,11 @@ fun PlayerResponse.toDomainModel(): Player = Player(
         losses = stats[15]
     )
 )
+
+fun networkPlatformToDomainPlatform(platform: String) = when (platform) {
+    "uplay" -> "PC"
+    "psn" -> "PlayStation"
+    "xlb" -> "Xbox"
+    else -> "Unknown"
+}
 
