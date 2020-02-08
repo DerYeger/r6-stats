@@ -97,6 +97,17 @@
                         app:layout_constraintTop_toBottomOf="@+id/platform_text">
 
                         <include
+                            android:id="@+id/general_stats_card"
+                            layout="@layout/general_stats_card"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/default_spacing"
+                            android:layout_marginTop="@dimen/default_spacing"
+                            android:layout_marginEnd="@dimen/default_spacing"
+                            android:visibility="@{viewModel.hasPlayer ? View.VISIBLE : View.GONE}"
+                            bind:generalStats="@{viewModel.player.generalStats}" />
+
+                        <include
                             android:id="@+id/total_card"
                             layout="@layout/game_mode_card"
                             android:layout_width="match_parent"
@@ -131,17 +142,6 @@
                             android:visibility="@{viewModel.hasPlayer ? View.VISIBLE : View.GONE}"
                             bind:gameMode="@{viewModel.player.ranked}"
                             bind:gameModeName="@{@string/ranked}" />
-
-                        <include
-                            android:id="@+id/general_stats_card"
-                            layout="@layout/general_stats_card"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginStart="@dimen/default_spacing"
-                            android:layout_marginTop="@dimen/default_spacing"
-                            android:layout_marginEnd="@dimen/default_spacing"
-                            android:visibility="@{viewModel.hasPlayer ? View.VISIBLE : View.GONE}"
-                            bind:generalStats="@{viewModel.player.generalStats}" />
 
                         <include
                             android:id="@+id/bomb_card"

@@ -17,7 +17,7 @@
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:cardCornerRadius="@dimen/half_spacing">
+        app:cardCornerRadius="@dimen/half_spacing" >
 
         <androidx.appcompat.widget.LinearLayoutCompat
             android:layout_width="match_parent"
