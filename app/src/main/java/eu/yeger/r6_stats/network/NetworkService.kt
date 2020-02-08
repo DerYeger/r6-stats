@@ -2,7 +2,6 @@ package eu.yeger.r6_stats.network
 
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
-import eu.yeger.r6_stats.domain.PlayerResponse
 import eu.yeger.r6_stats.domain.SearchResponse
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
