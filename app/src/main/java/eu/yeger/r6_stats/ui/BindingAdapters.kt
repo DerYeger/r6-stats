@@ -50,11 +50,8 @@ fun ImageView.bindImage(imageUrl: String?) {
 }
 
 @BindingAdapter("ubiUserId")
-fun ImageView.bind(userId: String?) {
-    bindImage("https://ubisoft-avatars.akamaized.net/${userId}/default_146_146.png")
-}
-
-@BindingAdapter("stringArray")
-fun Spinner.bindStringArray(id: Int) {
-
+fun ImageView.bindUbiAvatar(userId: String?) {
+    userId?.let {
+        bindImage("https://ubisoft-avatars.akamaized.net/${userId}/default_146_146.png")
+    }
 }
