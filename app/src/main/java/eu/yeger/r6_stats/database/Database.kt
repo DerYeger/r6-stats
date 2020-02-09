@@ -24,7 +24,7 @@ interface PlayerDao {
 @Dao
 interface FavoriteDao {
     @Query("SELECT player.* FROM favorite INNER JOIN player WHERE favorite.playerId == player.id")
-    fun getAll(): LiveData<Player>
+    fun getAll(): LiveData<List<Player>>
 
     @Insert
     fun insert(favorite: Favorite)

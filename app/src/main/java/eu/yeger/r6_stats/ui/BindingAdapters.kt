@@ -7,13 +7,21 @@ import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.bumptech.glide.Glide
+import eu.yeger.r6_stats.domain.Player
 import eu.yeger.r6_stats.domain.SearchResult
+import eu.yeger.r6_stats.ui.favorites.FavoriteListAdapter
 import eu.yeger.r6_stats.ui.search.SearchResultAdapter
 
 @BindingAdapter("searchResults")
 fun RecyclerView.bindSearchResults(searchResults: List<SearchResult>?) {
     val adapter = adapter as SearchResultAdapter
     adapter.submitList(searchResults)
+}
+
+@BindingAdapter("favorites")
+fun RecyclerView.bindFavorites(favorites: List<Player>?) {
+    val adapter = adapter as FavoriteListAdapter
+    adapter.submitList(favorites)
 }
 
 @BindingAdapter("visible")

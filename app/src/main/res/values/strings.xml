@@ -40,4 +40,5 @@
     <string name="melees_format">%d melee kills</string>
     <string name="revives_format">%d revives</string>
     <string name="suicides_format">%d suicides</string>
+    <string name="no_favorites">No favorites</string>
 </resources>

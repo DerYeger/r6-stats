@@ -24,6 +24,7 @@ class FavoritesFragment : Fragment() {
         binding = FavoritesFragmentBinding.inflate(inflater).apply {
             viewModel = this@FavoritesFragment.viewModel
             lifecycleOwner = this@FavoritesFragment
+            favoritesList.adapter = FavoriteListAdapter()
         }
         return binding.root
     }
