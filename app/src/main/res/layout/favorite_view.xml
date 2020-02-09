@@ -15,16 +15,17 @@
     </data>
 
     <androidx.cardview.widget.CardView
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:onClick="@{() -> onClickListener.onClick(player)}"
         app:cardCornerRadius="@dimen/half_spacing"
-        android:layout_margin="@dimen/default_spacing">
+        android:layout_margin="@dimen/half_spacing" >
 
         <TextView
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/half_spacing"
+            android:textAlignment="center"
             android:text="@{@string/name_platform_format(player.name, player.platform)}"
             tools:text="Name / Platform" />
     </androidx.cardview.widget.CardView>
