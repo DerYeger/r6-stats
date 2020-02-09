@@ -25,7 +25,7 @@ class StatsViewModel(application: Application, val playerId: String?) : ViewMode
         refresh()
     }
 
-    fun refresh()    {
+    fun refresh() {
         viewModelScope.launch {
             _refreshing.value = true
             statsRepository.fetchPlayer()

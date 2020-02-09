@@ -10,7 +10,7 @@
         android:label="@string/title_search">
         <action
             android:id="@+id/action_navigation_search_to_navigation_stats"
-            app:destination="@+id/navigation_stats"/>
+            app:destination="@+id/navigation_stats" />
     </fragment>
     <fragment
         android:id="@+id/navigation_stats"
@@ -25,7 +25,7 @@
     <fragment
         android:id="@+id/navigation_favorites"
         android:name="eu.yeger.r6_stats.ui.favorites.FavoritesFragment"
-        android:label="@string/title_favorites" >
+        android:label="@string/title_favorites">
         <action
             android:id="@+id/action_navigation_favorites_to_navigation_stats"
             app:destination="@id/navigation_stats" />

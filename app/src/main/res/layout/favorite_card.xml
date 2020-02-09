@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:tools="http://schemas.android.com/tools"
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <data>
 
@@ -17,16 +17,16 @@
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_margin="@dimen/half_spacing"
         android:onClick="@{() -> onClickListener.onClick(player)}"
-        app:cardCornerRadius="@dimen/half_spacing"
-        android:layout_margin="@dimen/half_spacing" >
+        app:cardCornerRadius="@dimen/default_corner_radius">
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/half_spacing"
-            android:textAlignment="center"
             android:text="@{@string/name_platform_format(player.name, player.platform)}"
+            android:textAlignment="center"
             tools:text="Name / Platform" />
     </androidx.cardview.widget.CardView>
 </layout>

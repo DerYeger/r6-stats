@@ -5,13 +5,14 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import eu.yeger.r6_stats.databinding.FavoriteViewBinding
+import eu.yeger.r6_stats.databinding.FavoriteCardBinding
 import eu.yeger.r6_stats.domain.Player
 import eu.yeger.r6_stats.ui.OnClickListener
 
-class FavoriteListAdapter(private val onClickListener: OnClickListener<Player>) : ListAdapter<Player, FavoriteListAdapter.ViewHolder>(DiffCallback) {
+class FavoriteListAdapter(private val onClickListener: OnClickListener<Player>) :
+    ListAdapter<Player, FavoriteListAdapter.ViewHolder>(DiffCallback) {
 
-    inner class ViewHolder(private val binding: FavoriteViewBinding) :
+    inner class ViewHolder(private val binding: FavoriteCardBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
         fun bind(player: Player) {
@@ -30,7 +31,13 @@ class FavoriteListAdapter(private val onClickListener: OnClickListener<Player>) 
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        return ViewHolder(FavoriteViewBinding.inflate(LayoutInflater.from(parent.context), parent, false))
+        return ViewHolder(
+            FavoriteCardBinding.inflate(
+                LayoutInflater.from(parent.context),
+                parent,
+                false
+            )
+        )
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {

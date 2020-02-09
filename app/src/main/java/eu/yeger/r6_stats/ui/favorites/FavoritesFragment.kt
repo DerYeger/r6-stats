@@ -27,7 +27,8 @@ class FavoritesFragment : Fragment() {
             viewModel = this@FavoritesFragment.viewModel
             lifecycleOwner = this@FavoritesFragment
             favoritesList.adapter = FavoriteListAdapter(OnClickListener { player ->
-                val action = FavoritesFragmentDirections.actionNavigationFavoritesToNavigationStats()
+                val action =
+                    FavoritesFragmentDirections.actionNavigationFavoritesToNavigationStats()
                 action.playerId = player.id
                 findNavController().navigate(action)
             })

@@ -13,7 +13,8 @@ fun Fragment.saveToSharedPreferences(key: String, value: String?) {
 }
 
 fun Fragment.fromSharedPreferences(key: String): String? {
-    return activity?.getSharedPreferences(SHARED_PREFERENCES_NAME, MODE_PRIVATE)?.getString(key, null)
+    return activity?.getSharedPreferences(SHARED_PREFERENCES_NAME, MODE_PRIVATE)
+        ?.getString(key, null)
 }
 
 fun ratio(dividend: Number, divider: Number): Double = when (divider) {
