@@ -23,7 +23,7 @@ interface PlayerDao {
 
 @Dao
 interface FavoriteDao {
-    @Query("SELECT player.* FROM favorite INNER JOIN player WHERE favorite.playerId == player.id")
+    @Query("SELECT player.* FROM favorite INNER JOIN player WHERE favorite.playerId == player.id ORDER BY player.name ASC")
     fun getAll(): LiveData<List<Player>>
 
     @Query("SELECT * FROM player WHERE player.id == :playerId AND player.id IN favorite")

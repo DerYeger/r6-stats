@@ -7,14 +7,16 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import eu.yeger.r6_stats.databinding.FavoriteViewBinding
 import eu.yeger.r6_stats.domain.Player
+import eu.yeger.r6_stats.ui.OnClickListener
 
-class FavoriteListAdapter : ListAdapter<Player, FavoriteListAdapter.ViewHolder>(DiffCallback) {
+class FavoriteListAdapter(private val onClickListener: OnClickListener<Player>) : ListAdapter<Player, FavoriteListAdapter.ViewHolder>(DiffCallback) {
 
     inner class ViewHolder(private val binding: FavoriteViewBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
         fun bind(player: Player) {
             binding.player = player
+            binding.onClickListener = onClickListener
             binding.executePendingBindings()
         }
     }
