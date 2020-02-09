@@ -21,13 +21,26 @@ interface PlayerDao {
     fun get(id: String): LiveData<Player>
 }
 
+@Dao
+interface FavoriteDao {
+    @Query("SELECT player.* FROM favorite INNER JOIN player WHERE favorite.playerId == player.id")
+    fun getAll(): LiveData<Player>
+
+    @Insert
+    fun insert(favorite: Favorite)
+
+    @Delete
+    fun delete(favorite: Favorite)
+}
+
 @Database(
-    entities = [Player::class],
-    version = 1,
+    entities = [Player::class, Favorite::class],
+    version = 2,
     exportSchema = false
 )
 abstract class PlayerDatabase : RoomDatabase() {
     abstract val playerDao: PlayerDao
+    abstract val favoriteDao: FavoriteDao
 }
 
 private lateinit var INSTANCE: PlayerDatabase
@@ -41,6 +54,7 @@ fun getDatabase(context: Context): PlayerDatabase {
                     PlayerDatabase::class.java,
                     "playerDatabase"
                 )
+                .fallbackToDestructiveMigration()
                 .build()
         }
         return INSTANCE
