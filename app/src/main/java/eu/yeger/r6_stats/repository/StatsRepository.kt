@@ -9,17 +9,21 @@ import eu.yeger.r6_stats.network.toDomainModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 
-class StatsRepository(context: Context, playerId: String) {
+class StatsRepository(context: Context, private val playerId: String?) {
 
     private val database = getDatabase(context)
 
-    val currentPlayer: LiveData<Player> = database.playerDao.get(playerId)
+    val currentPlayer: LiveData<Player> = database.playerDao.get(playerId ?: "")
 
-    suspend fun fetchPlayer(playerId: String) {
+    suspend fun fetchPlayer() {
+        if (playerId == null) return
+
         val playerResponse = withContext(Dispatchers.IO) {
             NetworkService.siegeApi.player(id = playerId)
         }
+
         val player = playerResponse.toDomainModel()
+
         withContext(Dispatchers.IO) {
             if (currentPlayer.value === null) {
                 database.playerDao.insert(player)

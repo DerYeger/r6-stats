@@ -7,7 +7,7 @@ import kotlinx.coroutines.launch
 
 class StatsViewModel(application: Application, val playerId: String?) : ViewModel() {
 
-    private val statsRepository = StatsRepository(application, playerId ?: "")
+    private val statsRepository = StatsRepository(application, playerId)
 
     val player = statsRepository.currentPlayer
     val hasPlayer = Transformations.map(player) { it !== null }
@@ -22,12 +22,10 @@ class StatsViewModel(application: Application, val playerId: String?) : ViewMode
     }
 
     fun refresh() {
-        playerId?.let {
-            viewModelScope.launch {
-                _refreshing.value = true
-                statsRepository.fetchPlayer(playerId)
-                _refreshing.value = false
-            }
+        viewModelScope.launch {
+            _refreshing.value = true
+            statsRepository.fetchPlayer()
+            _refreshing.value = false
         }
     }
 

@@ -15,8 +15,6 @@ private const val LAST_PLAYER_ID = "last_player_id"
 
 class StatsFragment : Fragment() {
 
-
-
     private lateinit var viewModel: StatsViewModel
 
     private lateinit var binding: StatsFragmentBinding
