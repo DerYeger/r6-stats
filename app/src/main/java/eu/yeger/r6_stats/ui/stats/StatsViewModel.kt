@@ -3,15 +3,15 @@ package eu.yeger.r6_stats.ui.stats
 import android.app.Application
 import androidx.lifecycle.*
 import eu.yeger.r6_stats.repository.FavoritesRepository
-import eu.yeger.r6_stats.repository.StatsRepository
+import eu.yeger.r6_stats.repository.PlayerRepository
 import kotlinx.coroutines.launch
 
 class StatsViewModel(application: Application, val playerId: String?) : ViewModel() {
 
-    private val statsRepository = StatsRepository(application, playerId)
+    private val playerRepository = PlayerRepository(application, playerId)
     private val favoritesRepository = FavoritesRepository(application)
 
-    val player = statsRepository.currentPlayer
+    val player = playerRepository.currentPlayer
     val hasPlayer = Transformations.map(player) { it !== null }
 
     val isFavorite = favoritesRepository.isFavorite(playerId)
@@ -28,7 +28,7 @@ class StatsViewModel(application: Application, val playerId: String?) : ViewMode
     fun refresh() {
         viewModelScope.launch {
             _refreshing.value = true
-            statsRepository.fetchPlayer()
+            playerRepository.fetchPlayer()
             _refreshing.value = false
         }
     }

@@ -6,6 +6,7 @@ import eu.yeger.r6_stats.domain.SearchResult
 import eu.yeger.r6_stats.network.NetworkService
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
+import timber.log.Timber
 
 class SearchRepository {
 
@@ -13,9 +14,13 @@ class SearchRepository {
     val searchResults: LiveData<List<SearchResult>> = _searchResults
 
     suspend fun search(searchString: String) {
-        val searchResponse = withContext(Dispatchers.IO) {
-            NetworkService.siegeApi.search(name = searchString)
+        try {
+            val searchResponse = withContext(Dispatchers.IO) {
+                NetworkService.siegeApi.search(name = searchString)
+            }
+            _searchResults.value = searchResponse.results
+        } catch (exception: Exception) {
+            Timber.e(exception)
         }
-        _searchResults.value = searchResponse.results
     }
 }

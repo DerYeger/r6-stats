@@ -27,7 +27,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="parent"
-            app:spanCount="3"
+            app:spanCount="2"
             app:visible="@{viewModel.favorites.size() > 0}" />
 
         <TextView

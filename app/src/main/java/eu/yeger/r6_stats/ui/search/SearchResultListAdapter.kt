@@ -5,14 +5,14 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import eu.yeger.r6_stats.databinding.SearchResultViewBinding
+import eu.yeger.r6_stats.databinding.SearchResultCardBinding
 import eu.yeger.r6_stats.domain.SearchResult
 import eu.yeger.r6_stats.ui.OnClickListener
 
 class SearchResultAdapter(private val onClickListener: OnClickListener<SearchResult>) :
     ListAdapter<SearchResult, SearchResultAdapter.ViewHolder>(DiffCallback) {
 
-    inner class ViewHolder(private val binding: SearchResultViewBinding) :
+    inner class ViewHolder(private val binding: SearchResultCardBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
         fun bind(searchResult: SearchResult, index: Int) {
@@ -32,7 +32,7 @@ class SearchResultAdapter(private val onClickListener: OnClickListener<SearchRes
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        return ViewHolder(SearchResultViewBinding.inflate(LayoutInflater.from(parent.context)))
+        return ViewHolder(SearchResultCardBinding.inflate(LayoutInflater.from(parent.context), parent, false))
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
