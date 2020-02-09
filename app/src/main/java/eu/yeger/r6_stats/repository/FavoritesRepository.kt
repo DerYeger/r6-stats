@@ -11,17 +11,21 @@ class FavoritesRepository(context: Context) {
 
     private val database = getDatabase(context)
 
-    val favorites = database.favoriteDao.getAll()
+    val favorites by lazy {
+        database.favoriteDao.getAll()
+    }
 
-    suspend fun addToFavorites(player: Player) {
+    fun isFavorite(playerId: String?) = database.favoriteDao.get(playerId ?: "")
+
+    suspend fun addToFavorites(playerId: String) {
         withContext(Dispatchers.IO) {
-            database.favoriteDao.insert(Favorite(playerId = player.id))
+            database.favoriteDao.insert(Favorite(playerId))
         }
     }
 
-    suspend fun removeFromFavorites(player: Player) {
+    suspend fun removeFromFavorites(playerId: String) {
         withContext(Dispatchers.IO) {
-            database.favoriteDao.delete(Favorite(playerId = player.id))
+            database.favoriteDao.delete(Favorite(playerId))
         }
     }
 }

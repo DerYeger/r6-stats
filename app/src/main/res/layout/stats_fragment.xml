@@ -49,16 +49,27 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent">
 
+                    <ToggleButton
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="@dimen/default_spacing"
+                        android:background="@drawable/star_toggle_image"
+                        app:layout_constraintBottom_toBottomOf="@+id/imageView"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        android:checked="@{viewModel.isFavorite != null}"
+                        android:onClick="@{() -> viewModel.onFavoriteToggled()}"
+                        app:layout_constraintTop_toTopOf="@+id/imageView"
+                        app:layout_constraintVertical_bias="1.0" />
+
                     <TextView
                         android:id="@+id/name_text"
                         style="@style/TextAppearance.MaterialComponents.Headline6"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="@dimen/default_spacing"
-                        android:layout_marginTop="@dimen/default_spacing"
                         android:text="@{viewModel.player.name}"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintStart_toEndOf="@+id/imageView"
+                        app:layout_constraintTop_toTopOf="@+id/imageView"
                         app:visible="@{viewModel.hasPlayer}"
                         tools:text="PlayerName" />
 
@@ -70,7 +81,7 @@
                         android:layout_marginStart="@dimen/default_spacing"
                         android:layout_marginTop="@dimen/quarter_spacing"
                         android:text="@{@string/level_format(viewModel.player.level)}"
-                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintStart_toEndOf="@+id/imageView"
                         app:layout_constraintTop_toBottomOf="@+id/name_text"
                         app:visible="@{viewModel.hasPlayer}"
                         tools:text="Level 42" />
@@ -83,7 +94,7 @@
                         android:layout_marginStart="@dimen/default_spacing"
                         android:layout_marginTop="@dimen/quarter_spacing"
                         android:text="@{viewModel.player.platform}"
-                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintStart_toEndOf="@+id/imageView"
                         app:layout_constraintTop_toBottomOf="@+id/level_text"
                         bind:visible="@{viewModel.hasPlayer}"
                         tools:text="Platform" />
@@ -94,7 +105,7 @@
                         android:orientation="vertical"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/platform_text">
+                        app:layout_constraintTop_toBottomOf="@+id/imageView">
 
                         <include
                             android:id="@+id/general_stats_card"
@@ -182,12 +193,12 @@
 
                     <ImageView
                         android:id="@+id/imageView"
-                        android:layout_width="wrap_content"
-                        android:layout_height="0dp"
-                        android:layout_marginEnd="@dimen/default_spacing"
-                        app:layout_constraintBottom_toBottomOf="@+id/platform_text"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintTop_toTopOf="@+id/name_text"
+                        android:layout_width="96dp"
+                        android:layout_height="96dp"
+                        android:layout_marginStart="@dimen/default_spacing"
+                        android:layout_marginTop="@dimen/default_spacing"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
                         app:ubiUserId="@{viewModel.player.userId}"
                         tools:srcCompat="@tools:sample/avatars" />
                 </androidx.constraintlayout.widget.ConstraintLayout>
