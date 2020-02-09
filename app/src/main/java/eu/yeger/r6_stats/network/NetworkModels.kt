@@ -87,7 +87,6 @@ fun PlayerResponse.toDomainModel(): Player = Player(
 fun networkPlatformToDomainPlatform(platform: String) = when (platform) {
     "uplay" -> "PC"
     "psn" -> "PlayStation"
-    "xlb" -> "Xbox"
-    else -> "Unknown"
+    "xbl" -> "Xbox"
+    else -> platform
 }
-

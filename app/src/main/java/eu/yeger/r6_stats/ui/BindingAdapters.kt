@@ -1,12 +1,15 @@
 package eu.yeger.r6_stats.ui
 
 import android.view.View
+import android.widget.ArrayAdapter
 import android.widget.ImageView
+import android.widget.Spinner
 import androidx.core.net.toUri
 import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.bumptech.glide.Glide
+import eu.yeger.r6_stats.R
 import eu.yeger.r6_stats.domain.Player
 import eu.yeger.r6_stats.domain.SearchResult
 import eu.yeger.r6_stats.ui.favorites.FavoriteListAdapter
@@ -49,4 +52,9 @@ fun ImageView.bindImage(imageUrl: String?) {
 @BindingAdapter("ubiUserId")
 fun ImageView.bind(userId: String?) {
     bindImage("https://ubisoft-avatars.akamaized.net/${userId}/default_146_146.png")
+}
+
+@BindingAdapter("stringArray")
+fun Spinner.bindStringArray(id: Int) {
+
 }

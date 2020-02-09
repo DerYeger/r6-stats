@@ -43,4 +43,10 @@
     <string name="revives_format">%d revives</string>
     <string name="suicides_format">%d suicides</string>
     <string name="no_favorites">No favorites</string>
+
+    <string-array name="platforms_array">
+        <item>PC</item>
+        <item>PS4</item>
+        <item>Xbox</item>
+    </string-array>
 </resources>

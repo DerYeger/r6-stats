@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+<layout xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:bind="http://schemas.android.com/apk/res-auto">
 
     <data>
 
@@ -21,14 +23,27 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/default_spacing"
             android:layout_marginTop="@dimen/default_spacing"
-            android:layout_marginEnd="16dp"
+            android:layout_marginEnd="@dimen/half_spacing"
             android:ems="10"
             android:hint="@string/search_hint"
             android:imeOptions="actionDone"
             android:inputType="text"
             android:text="@={viewModel.searchString}"
-            app:layout_constraintEnd_toStartOf="@+id/search_button"
+            app:layout_constraintEnd_toStartOf="@+id/platform_spinner"
             app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.appcompat.widget.AppCompatSpinner
+            android:id="@+id/platform_spinner"
+            android:layout_width="wrap_content"
+            android:textAlignment="viewEnd"
+            android:layout_height="wrap_content"
+            android:entries="@array/platforms_array"
+            android:layout_marginTop="@dimen/default_spacing"
+            android:layout_marginEnd="@dimen/half_spacing"
+            android:layout_marginBottom="@dimen/default_spacing"
+            app:layout_constraintBottom_toTopOf="@+id/search_result_list"
+            app:layout_constraintEnd_toStartOf="@+id/search_button"
             app:layout_constraintTop_toTopOf="parent" />
 
         <Button
