@@ -4,8 +4,11 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import eu.yeger.r6_stats.databinding.StatsFragmentBinding
 import eu.yeger.r6_stats.fromSharedPreferences
 import eu.yeger.r6_stats.saveToSharedPreferences
@@ -31,10 +34,16 @@ class StatsFragment : Fragment() {
         } ?: fromSharedPreferences(LAST_PLAYER_ID)
         val viewModelFactory = StatsViewModel.Factory(activity!!.application, playerId)
         viewModel = ViewModelProvider(this, viewModelFactory).get(StatsViewModel::class.java)
-        binding = StatsFragmentBinding.inflate(inflater).apply {
-            viewModel = this@StatsFragment.viewModel
-            lifecycleOwner = this@StatsFragment
-        }
+        viewModel.networkExceptionAction.observe(this, Observer { exception ->
+            if (exception != null) {
+                Toast.makeText(this.context, exception, Toast.LENGTH_SHORT).show()
+                viewModel.onNetworkExceptionActionCompleted()
+                findNavController().navigateUp()
+            }
+        })
+        binding = StatsFragmentBinding.inflate(inflater)
+        binding.viewModel = viewModel
+        binding.lifecycleOwner = this
         return binding.root
     }
 }

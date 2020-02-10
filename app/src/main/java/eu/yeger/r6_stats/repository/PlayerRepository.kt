@@ -8,7 +8,6 @@ import eu.yeger.r6_stats.network.NetworkService
 import eu.yeger.r6_stats.network.toDomainModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
-import timber.log.Timber
 
 class PlayerRepository(context: Context, private val playerId: String?) {
 
@@ -17,24 +16,15 @@ class PlayerRepository(context: Context, private val playerId: String?) {
     val currentPlayer: LiveData<Player> = database.playerDao.get(playerId ?: "")
 
     suspend fun fetchPlayer() {
-        try {
-            if (playerId == null) return
-
-            val playerResponse = withContext(Dispatchers.IO) {
-                NetworkService.siegeApi.player(id = playerId)
-            }
-
+        if (playerId == null) return
+        withContext(Dispatchers.IO) {
+            val playerResponse = NetworkService.siegeApi.player(id = playerId)
             val player = playerResponse.toDomainModel()
-
-            withContext(Dispatchers.IO) {
-                if (currentPlayer.value === null) {
-                    database.playerDao.insert(player)
-                } else {
-                    database.playerDao.update(player)
-                }
+            if (currentPlayer.value === null) {
+                database.playerDao.insert(player)
+            } else {
+                database.playerDao.update(player)
             }
-        } catch (exception: Exception) {
-            Timber.e(exception)
         }
     }
 }

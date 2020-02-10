@@ -4,6 +4,7 @@ import android.app.Application
 import androidx.lifecycle.*
 import eu.yeger.r6_stats.repository.FavoritesRepository
 import eu.yeger.r6_stats.repository.PlayerRepository
+import kotlinx.coroutines.CoroutineExceptionHandler
 import kotlinx.coroutines.launch
 
 class StatsViewModel(application: Application, val playerId: String?) : ViewModel() {
@@ -21,12 +22,20 @@ class StatsViewModel(application: Application, val playerId: String?) : ViewMode
         it && playerId !== null
     }
 
+    private val _networkExceptionAction = MutableLiveData<String>()
+    val networkExceptionAction: LiveData<String> = _networkExceptionAction
+
+    private val networkExceptionHandler = CoroutineExceptionHandler { _, exception ->
+        _refreshing.value = false
+        _networkExceptionAction.value = exception.message ?: "Failed to fetch profile"
+    }
+
     init {
         refresh()
     }
 
     fun refresh() {
-        viewModelScope.launch {
+        viewModelScope.launch(networkExceptionHandler) {
             _refreshing.value = true
             playerRepository.fetchPlayer()
             _refreshing.value = false
@@ -43,6 +52,10 @@ class StatsViewModel(application: Application, val playerId: String?) : ViewMode
                 }
             }
         }
+    }
+
+    fun onNetworkExceptionActionCompleted() {
+        _networkExceptionAction.value = null
     }
 
     class Factory(
