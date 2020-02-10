@@ -5,11 +5,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.AdapterView
-import android.widget.ArrayAdapter
+import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
-import eu.yeger.r6_stats.R
 import eu.yeger.r6_stats.databinding.SearchFragmentBinding
 import eu.yeger.r6_stats.ui.OnClickListener
 
@@ -25,17 +25,22 @@ class SearchFragment : Fragment(), AdapterView.OnItemSelectedListener {
         savedInstanceState: Bundle?
     ): View {
         viewModel = ViewModelProvider(this).get(SearchViewModel::class.java)
-        binding = SearchFragmentBinding.inflate(inflater).apply {
-            viewModel = this@SearchFragment.viewModel
-            lifecycleOwner = this@SearchFragment
-            searchResultList.adapter = SearchResultAdapter(OnClickListener { searchResult ->
-                val action =
-                    SearchFragmentDirections.actionNavigationSearchToNavigationStats()
-                action.playerId = searchResult.id
-                findNavController().navigate(action)
-            })
-            platformSpinner.onItemSelectedListener = this@SearchFragment
-        }
+        viewModel.searchExceptionAction.observe(this, Observer { exception ->
+            if (exception != null) {
+                Toast.makeText(this.context, exception, Toast.LENGTH_SHORT).show()
+                viewModel.onSearchExceptionActionCompleted()
+            }
+        })
+        binding = SearchFragmentBinding.inflate(inflater)
+        binding.viewModel = viewModel
+        binding.lifecycleOwner = this
+        binding.searchResultList.adapter = SearchResultAdapter(OnClickListener { searchResult ->
+            val action =
+                SearchFragmentDirections.actionNavigationSearchToNavigationStats()
+            action.playerId = searchResult.id
+            findNavController().navigate(action)
+        })
+        binding.platformSpinner.onItemSelectedListener = this
         return binding.root
     }
 

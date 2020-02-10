@@ -5,6 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import eu.yeger.r6_stats.repository.SearchRepository
+import kotlinx.coroutines.CoroutineExceptionHandler
 import kotlinx.coroutines.launch
 import timber.log.Timber
 
@@ -20,10 +21,17 @@ class SearchViewModel : ViewModel() {
     private val _searchInProgress = MutableLiveData<Boolean>()
     val searchInProgress: LiveData<Boolean> = _searchInProgress
 
+    private val _searchExceptionAction = MutableLiveData<String>()
+    val searchExceptionAction: LiveData<String> = _searchExceptionAction
+
+    private val searchExceptionHandler = CoroutineExceptionHandler { _, exception ->
+        _searchInProgress.value = false
+        _searchExceptionAction.value = exception.message
+    }
+
     fun search() {
-        Timber.i("Searching $selectedPlatform for ${searchString.value}")
         searchString.value?.let {
-            viewModelScope.launch {
+            viewModelScope.launch(searchExceptionHandler) {
                 _searchInProgress.value = true
                 searchRepository.search(platform = selectedPlatform, name = it)
                 _searchInProgress.value = false
@@ -37,5 +45,9 @@ class SearchViewModel : ViewModel() {
             "PS4" -> "psn"
             else -> "uplay"
         }
+    }
+
+    fun onSearchExceptionActionCompleted() {
+        _searchExceptionAction.value = null
     }
 }
