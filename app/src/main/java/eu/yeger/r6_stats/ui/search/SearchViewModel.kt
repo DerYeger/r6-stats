@@ -13,9 +13,8 @@ class SearchViewModel : ViewModel() {
     val searchString = MutableLiveData<String>()
     val searchResults = searchRepository.searchResults
 
-    val hasResults = Transformations.map(searchResults) { results ->
-        results?.size ?: 0 > 0
-    }
+    private val _hasNoResults = MutableLiveData<Boolean>()
+    val hasNoResults: LiveData<Boolean> = _hasNoResults
 
     private lateinit var selectedPlatform: String
 
@@ -33,8 +32,10 @@ class SearchViewModel : ViewModel() {
     fun search() {
         searchString.value?.let {
             viewModelScope.launch(searchExceptionHandler) {
+                _hasNoResults.value = false
                 _searchInProgress.value = true
-                searchRepository.search(platform = selectedPlatform, name = it)
+                val gotResult = searchRepository.search(platform = selectedPlatform, name = it)
+                _hasNoResults.value = !gotResult
                 _searchInProgress.value = false
             }
         }

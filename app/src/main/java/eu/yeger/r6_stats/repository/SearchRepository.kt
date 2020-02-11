@@ -12,10 +12,11 @@ class SearchRepository {
     private val _searchResults = MutableLiveData<List<SearchResult>>()
     val searchResults: LiveData<List<SearchResult>> = _searchResults
 
-    suspend fun search(platform: String, name: String) {
+    suspend fun search(platform: String, name: String): Boolean {
         val searchResponse = withContext(Dispatchers.IO) {
             NetworkService.siegeApi.search(platform = platform, name = name)
         }
         _searchResults.value = searchResponse.results
+        return searchResponse.results?.isNotEmpty() ?: false
     }
 }
