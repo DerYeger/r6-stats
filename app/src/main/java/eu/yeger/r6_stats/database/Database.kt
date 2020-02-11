@@ -3,6 +3,7 @@ package eu.yeger.r6_stats.database
 import android.content.Context
 import androidx.lifecycle.LiveData
 import androidx.room.*
+import androidx.room.OnConflictStrategy.IGNORE
 import eu.yeger.r6_stats.domain.Player
 
 @Dao
@@ -30,7 +31,7 @@ interface FavoriteDao {
     @Query("SELECT * FROM player WHERE player.id == :playerId AND player.id IN favorite")
     fun get(playerId: String): LiveData<Player>
 
-    @Insert
+    @Insert(onConflict = IGNORE)
     fun insert(favorite: Favorite)
 
     @Delete
