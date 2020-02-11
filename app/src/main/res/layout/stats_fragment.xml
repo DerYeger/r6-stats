@@ -129,6 +129,7 @@
                             android:layout_marginTop="@dimen/default_spacing"
                             android:layout_marginEnd="@dimen/default_spacing"
                             android:visibility="@{viewModel.hasPlayer ? View.VISIBLE : View.GONE}"
+                            bind:expanded="@{true}"
                             bind:gameMode="@{viewModel.player.total}"
                             bind:gameModeName="@{@string/total}" />
 
@@ -141,6 +142,7 @@
                             android:layout_marginTop="@dimen/default_spacing"
                             android:layout_marginEnd="@dimen/default_spacing"
                             android:visibility="@{viewModel.hasPlayer ? View.VISIBLE : View.GONE}"
+                            bind:expanded="@{false}"
                             bind:gameMode="@{viewModel.player.casual}"
                             bind:gameModeName="@{@string/casual}" />
 
@@ -153,6 +155,7 @@
                             android:layout_marginTop="@dimen/default_spacing"
                             android:layout_marginEnd="@dimen/default_spacing"
                             android:visibility="@{viewModel.hasPlayer ? View.VISIBLE : View.GONE}"
+                            bind:expanded="@{false}"
                             bind:gameMode="@{viewModel.player.ranked}"
                             bind:gameModeName="@{@string/ranked}" />
 
