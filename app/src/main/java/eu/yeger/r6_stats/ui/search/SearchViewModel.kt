@@ -1,9 +1,6 @@
 package eu.yeger.r6_stats.ui.search
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
+import androidx.lifecycle.*
 import eu.yeger.r6_stats.repository.SearchRepository
 import kotlinx.coroutines.CoroutineExceptionHandler
 import kotlinx.coroutines.launch
@@ -15,6 +12,10 @@ class SearchViewModel : ViewModel() {
 
     val searchString = MutableLiveData<String>()
     val searchResults = searchRepository.searchResults
+
+    val hasResults = Transformations.map(searchResults) { results ->
+        results?.size ?: 0 > 0
+    }
 
     private lateinit var selectedPlatform: String
 
