@@ -5,14 +5,14 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
+import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import eu.yeger.r6_stats.databinding.FavoritesFragmentBinding
 import eu.yeger.r6_stats.ui.OnClickListener
 
 class FavoritesFragment : Fragment() {
 
-    private lateinit var viewModel: FavoritesViewModel
+    private val viewModel: FavoritesViewModel by viewModels { FavoritesViewModel.Factory(this.activity!!.application) }
 
     private lateinit var binding: FavoritesFragmentBinding
 
@@ -21,18 +21,14 @@ class FavoritesFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        val viewModelFactory = FavoritesViewModel.Factory(activity!!.application)
-        viewModel = ViewModelProvider(this, viewModelFactory).get(FavoritesViewModel::class.java)
-        binding = FavoritesFragmentBinding.inflate(inflater).apply {
-            viewModel = this@FavoritesFragment.viewModel
-            lifecycleOwner = this@FavoritesFragment
-            favoritesList.adapter = FavoriteListAdapter(OnClickListener { player ->
-                val action =
-                    FavoritesFragmentDirections.actionNavigationFavoritesToNavigationStats()
-                action.playerId = player.id
-                findNavController().navigate(action)
-            })
-        }
+        binding = FavoritesFragmentBinding.inflate(inflater)
+        binding.lifecycleOwner = this
+        binding.viewModel = viewModel
+        binding.favoritesList.adapter = FavoriteListAdapter(OnClickListener { player ->
+            val action = FavoritesFragmentDirections.actionNavigationFavoritesToNavigationStats()
+            action.playerId = player.id
+            findNavController().navigate(action)
+        })
         return binding.root
     }
 }
