@@ -7,14 +7,14 @@
 
     <string name="search">Search</string>
     <string name="search_hint">Name</string>
-    <string name="search_result_format">%2d. Name: %s Id: %s</string>
+    <string name="no_results">No results</string>
 
     <string name="no_player">Select a player from the Search page.</string>
 
-    <string name="name_format">Name: %s</string>
+    <string name="player_avatar">Player avatar</string>
     <string name="level_format">Level %d</string>
-
     <string name="name_platform_format">%s / %s</string>
+    <string name="no_favorites">No favorites</string>
 
     <string name="total">Total</string>
     <string name="ranked">Ranked</string>
@@ -26,13 +26,9 @@
 
     <string name="playtime_format">%.2f hours</string>
 
-    <string name="kills_format">%d kills</string>
-    <string name="deaths_format">%d deaths</string>
     <string name="kill_death_format">%d kills - %d deaths</string>
     <string name="kd_format">%.2f K/D</string>
 
-    <string name="wins_format">%d wins</string>
-    <string name="losses_format">%d losses</string>
     <string name="win_loss_format">%d wins - %d losses</string>
     <string name="winrate_format">%.2f winrate</string>
 
@@ -42,8 +38,6 @@
     <string name="melees_format">%d melee kills</string>
     <string name="revives_format">%d revives</string>
     <string name="suicides_format">%d suicides</string>
-    <string name="no_favorites">No favorites</string>
-    <string name="no_results">No results</string>
 
     <string-array name="platforms_array">
         <item>PC</item>

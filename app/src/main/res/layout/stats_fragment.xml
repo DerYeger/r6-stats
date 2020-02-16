@@ -202,6 +202,7 @@
                         android:layout_height="96dp"
                         android:layout_marginStart="@dimen/default_spacing"
                         android:layout_marginTop="@dimen/default_spacing"
+                        android:contentDescription="@string/player_avatar"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
                         app:ubiUserId="@{viewModel.player.userId}"
