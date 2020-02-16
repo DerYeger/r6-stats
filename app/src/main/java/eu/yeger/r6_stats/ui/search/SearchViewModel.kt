@@ -1,10 +1,12 @@
 package eu.yeger.r6_stats.ui.search
 
-import androidx.lifecycle.*
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import eu.yeger.r6_stats.repository.SearchRepository
 import kotlinx.coroutines.CoroutineExceptionHandler
 import kotlinx.coroutines.launch
-import timber.log.Timber
 
 class SearchViewModel : ViewModel() {
 
